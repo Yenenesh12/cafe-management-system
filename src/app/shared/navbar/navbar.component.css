@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+#navbar .navbar-expand-lg .navbar-dark .bg-dark {
+    position: relative;
+}
+
+#navbarNav {
+    position: relative;
+    display: flex;
+    width: 100%;
+    gap: 50px;
+    padding-left: 800px;
+    ul {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        gap: 50px;
+        li {
+            cursor: pointer;
+            &:hover {
+                color: aqua;
+            }
+        }
+    }
+}
+
+#nav-item {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

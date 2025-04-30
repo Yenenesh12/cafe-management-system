@@ -1,0 +1,181 @@
+/* Modern Table Design */
+
+:root {
+    --primary: #4361ee;
+    --primary-light: #4895ef;
+    --secondary: #3f37c9;
+    --dark: #2b2d42;
+    --light: #f8f9fa;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --warning: #f8961e;
+    --gray: #edf2f4;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    color: var(--dark);
+}
+
+.container {
+    padding: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: rgb(27, 26, 26);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+}
+
+.card-body {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0 0 12px 12px;
+}
+
+.table {
+    width: 100%;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table thead th {
+    background-color: var(--primary);
+    color: rgb(31, 29, 29);
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: rgba(237, 242, 244, 0.5);
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(67, 97, 238, 0.05);
+    transform: scale(1.005);
+    box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+.table tbody td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    vertical-align: middle;
+}
+
+
+/* Status Badges */
+
+.table tbody td:last-child {
+    font-weight: 500;
+}
+
+.table tbody td:last-child:contains("Active") {
+    color: #2ec4b6;
+}
+
+.table tbody td:last-child:contains("Inactive") {
+    color: #e71d36;
+}
+
+.table tbody td:last-child:contains("Pending") {
+    color: #ff9f1c;
+}
+
+
+/* Scrollable table for mobile */
+
+@media (max-width: 768px) {
+    .card-body {
+        overflow-x: auto;
+    }
+    .table {
+        min-width: 600px;
+    }
+}
+
+
+/* Animation */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.table tbody tr {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.table tbody tr:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.table tbody tr:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.table tbody tr:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.table tbody tr:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.table tbody tr:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+
+/* Add more if you expect more rows */

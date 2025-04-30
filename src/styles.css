@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.card {
+    margin-top: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.invalid-feedback {
+    display: block;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.spinner-border {
+    margin-right: 5px;
+}

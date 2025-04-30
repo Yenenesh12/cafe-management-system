@@ -1,0 +1,49 @@
+<div class="product-form-container">
+    <h2>{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h2>
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+        <div class="form-group">
+            <label for="name">Product Name</label>
+            <input type="text" id="name" formControlName="name" class="form-control">
+            <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="error-message">
+                Product name is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
+            <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched" class="error-message">
+                Description is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" formControlName="price" class="form-control" min="0" step="0.01">
+            <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="error-message">
+                Valid price is required (minimum 0)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryId">Category</label>
+            <select id="categoryId" formControlName="categoryId" class="form-control">
+        <option value="">Select a category</option>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+            <div *ngIf="productForm.get('categoryId')?.invalid && productForm.get('categoryId')?.touched" class="error-message">
+                Category is required
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">
+        {{ isEditMode ? 'Update Product' : 'Add Product' }}
+      </button>
+            <button type="button" class="btn btn-secondary" (click)="router.navigate(['/products'])">
+        Cancel
+      </button>
+        </div>
+    </form>
+</div>

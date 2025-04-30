@@ -1,0 +1,41 @@
+<div class="category-container">
+    <div class="header">
+        <h2>Category Management</h2>
+        <div class="action-buttons">
+            <button class="btn btn-primary" routerLink="/categories/add">Add New Category</button>
+            <div class="search-box">
+                <input type="text" [(ngModel)]="searchTerm" (input)="filterCategories()" placeholder="Search categories...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="category-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of filteredCategories">
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td class="actions">
+                        <button class="btn btn-sm btn-edit" (click)="editCategory(category.id)">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+                        <button class="btn btn-sm btn-delete" (click)="deleteCategory(category.id)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredCategories.length === 0">
+                    <td colspan="3" class="no-categories">No categories found</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+/* Dashboard Styles */
+
+.dashboard-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container h2 {
+    margin-bottom: 30px;
+    color: #343a40;
+    font-weight: 600;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    font-size: 18px;
+    color: #6c757d;
+}
+
+.loading-spinner i {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.category-card .card-icon {
+    background-color: #4e73df;
+    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+}
+
+.product-card .card-icon {
+    background-color: #1cc88a;
+    background-image: linear-gradient(180deg, #1cc88a 10%, #13855c 100%);
+}
+
+.bill-card .card-icon {
+    background-color: #f6c23e;
+    background-image: linear-gradient(180deg, #f6c23e 10%, #dda20a 100%);
+}
+
+.user-card .card-icon {
+    background-color: #e74a3b;
+    background-image: linear-gradient(180deg, #e74a3b 10%, #be2617 100%);
+}
+
+.card-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #5a5c69;
+}
+
+.card-content .count {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2e2f37;
+}
+
+
+/* Responsive adjustments */
+
+@media (max-width: 768px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,49 @@
+<div class="dashboard-container">
+    <h2>Dashboard Overview</h2>
+
+    <div *ngIf="isLoading" class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i> Loading dashboard data...
+    </div>
+
+    <div *ngIf="!isLoading" class="dashboard-cards">
+        <div class="dashboard-card category-card">
+            <div class="card-icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <div class="card-content">
+                <h3>Categories</h3>
+                <p class="count">{{ dashboardData.category || 0 }}</p>
+            </div>
+        </div>
+
+        <div class="dashboard-card product-card">
+            <div class="card-icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div class="card-content">
+                <h3>Products</h3>
+                <p class="count">{{ dashboardData.Product || 0 }}</p>
+            </div>
+        </div>
+
+        <div class="dashboard-card bill-card">
+            <div class="card-icon">
+                <i class="fas fa-receipt"></i>
+            </div>
+            <div class="card-content">
+                <h3>Bills</h3>
+                <p class="count">{{ dashboardData.bill || 0 }}</p>
+            </div>
+        </div>
+
+        <div class="dashboard-card user-card">
+            <div class="card-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="card-content">
+                <h3>Users</h3>
+                <p class="count">{{ dashboardData.user || 0 }}</p>
+            </div>
+        </div>
+    </div>
+</div>
