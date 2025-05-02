@@ -28,8 +28,9 @@ export class ProductListComponent implements OnInit {
 
   loadProducts(): void {
     this.productService.getAllProducts().subscribe(
-      (response: any) => {
+      (response) => {
         this.products = response;
+        console.log(response)
         this.filteredProducts = [...this.products];
       },
       (error) => {
@@ -54,6 +55,10 @@ export class ProductListComponent implements OnInit {
 
   editProduct(id: number): void {
     this.router.navigate(['/products/edit', id]);
+  }
+
+  addNewProduct(): void {
+    this.router.navigate(['products/add', ]);
   }
 
   deleteProduct(id: number): void {

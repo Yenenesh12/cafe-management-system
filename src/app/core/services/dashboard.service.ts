@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = `${environment.apiUrl}/api/dashboard`;
+  private apiUrl = `${environment.apiUrl}/dashboard`;
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class DashboardService {
     });
   }
 
-  getDashboardDetails(): Observable<any> {
+  GetDetails(): Observable<any> {
     return this.http.get(`${this.apiUrl}/details`, { headers: this.getHeaders() });
   }
 }

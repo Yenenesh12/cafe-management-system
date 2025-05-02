@@ -53,6 +53,9 @@ export class CategoryListComponent implements OnInit {
   editCategory(id: number): void {
     this.router.navigate(['/categories/edit', id]);
   }
+  addNewCategory(): void {
+    this.router.navigate(['categories/add', ]);
+  }
 
   deleteCategory(id: number): void {
     if (confirm('Are you sure you want to delete this category?')) {

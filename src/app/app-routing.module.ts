@@ -12,6 +12,8 @@ import { LoginComponent } from './features/login/login.component';
 import { ProductFormComponent } from './features/product-form/product-form.component';
 import { ProductListComponent } from './features/product-list/product-list.component';
 import { SignupComponent } from './features/signup/signup.component';
+import { BillListComponent } from './features/bill-list/bill-list.component';
+import { CreateBillComponent } from './features/create-bill/create-bill.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -24,14 +26,17 @@ const routes: Routes = [
     component: UsersComponent,
     canActivate: [AuthGuard, AdminGuard]
   },
-  { path: '**', redirectTo: '' },
   { path: 'products', component: ProductListComponent, canActivate: [AuthGuard] },
   { path: 'products/add', component: ProductFormComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'products/edit/:id', component: ProductFormComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'categories', component: CategoryListComponent, canActivate: [AuthGuard] },
   { path: 'categories/add', component: CategoryFormComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'categories/edit/:id', component: CategoryFormComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'bills', component: BillListComponent, canActivate: [AuthGuard] },
+  { path: 'bills/create', component: CreateBillComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/bills', pathMatch: 'full' },
+  { path: '**', redirectTo: '' },
 
 ];
 

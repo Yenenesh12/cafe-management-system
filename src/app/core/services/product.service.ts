@@ -8,7 +8,7 @@ import { Product } from '../../shared/models/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = `${environment.apiUrl}/api/product`;
+  private apiUrl = `${environment.apiUrl}/product`;
 
   constructor(private http: HttpClient) { }
 

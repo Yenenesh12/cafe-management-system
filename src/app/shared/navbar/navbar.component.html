@@ -9,13 +9,23 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/" routerLinkActive="active" style="cursor: pointer;">Home</a>
                 </li>
-                <li class="nav-item" *ngIf="authService.isAdmin()">
-                    <a class="nav-link" routerLink="/admin/users" routerLinkActive="active">Users</a>
-                </li>
+
             </ul>
             <ul class="navbar-nav" *ngIf="authService.isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/change-password" style="cursor: pointer;">Change Password</a>
+                </li>
+                <li class="nav-item" *ngIf="authService.isAdmin()">
+                    <a class="nav-link" routerLink="/admin/users" routerLinkActive="active">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/products" style="cursor: pointer;">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/categories" style="cursor: pointer;">category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/bills" style="cursor: pointer;">Bill</a>
                 </li>
                 <li class=" nav-item ">
                     <a class="nav-link " (click)="logout() " style="cursor: pointer; ">Logout</a>

@@ -1,0 +1,119 @@
+<div class="container mt-4">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Create New Bill</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="billForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Customer Name</mat-label>
+                            <input matInput formControlName="name" required>
+                            <mat-error *ngIf="billForm.get('name')?.hasError('required')">
+                                Name is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" type="email" required>
+                            <mat-error *ngIf="billForm.get('email')?.hasError('required')">
+                                Email is required
+                            </mat-error>
+                            <mat-error *ngIf="billForm.get('email')?.hasError('email')">
+                                Please enter a valid email
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Contact Number</mat-label>
+                            <input matInput formControlName="contactNumber" required>
+                            <mat-error *ngIf="billForm.get('contactNumber')?.hasError('required')">
+                                Contact number is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Payment Method</mat-label>
+                            <mat-select formControlName="paymentMethod" required>
+                                <mat-option *ngFor="let method of paymentMethods" [value]="method">
+                                    {{method}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-title>Available Products</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-list>
+                                    <mat-list-item *ngFor="let product of product">
+                                        <div class="d-flex justify-content-between w-100">
+                                            <span>{{product.name}} - ${{product.price | number:'1.2-2'}}</span>
+                                            <button mat-icon-button color="primary" (click)="addProduct(product)">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                                        </div>
+                                    </mat-list-item>
+                                </mat-list>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-title>Selected Products</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-list>
+                                    <mat-list-item *ngFor="let product of selectedProducts; let i = index" class="product-item">
+                                        <div class="d-flex justify-content-between w-100 align-items-center">
+                                            <div>
+                                                <h5>{{product.name}}</h5>
+                                                <small>{{product.category}} - ${{product.price | number:'1.2-2'}} each</small>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <mat-form-field appearance="outline" class="quantity-field">
+                                                    <mat-label>Qty</mat-label>
+                                                    <input matInput type="number" min="1" [(ngModel)]="product.quantity" [ngModelOptions]="{standalone: true}" (change)="updateQuantity(product, product.quantity)">
+                                                </mat-form-field>
+                                                <span class="mx-2">${{product.total | number:'1.2-2'}}</span>
+                                                <button mat-icon-button color="warn" (click)="removeProduct(i)">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                                            </div>
+                                        </div>
+                                    </mat-list-item>
+                                </mat-list>
+                                <div *ngIf="selectedProducts.length === 0" class="text-center py-3">
+                                    <p>No products selected</p>
+                                </div>
+                                <div class="total-amount text-end mt-3">
+                                    Total: ${{billForm.get('totalAmount')?.value | number:'1.2-2'}}
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="isLoading">
+            <span *ngIf="!isLoading">Generate Bill</span>
+            <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
+          </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

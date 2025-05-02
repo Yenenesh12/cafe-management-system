@@ -18,7 +18,7 @@ body {
     display: flex;
     width: 100%;
     gap: 50px;
-    padding-left: 800px;
+    padding-left: 500px;
     ul {
         position: relative;
         display: flex;

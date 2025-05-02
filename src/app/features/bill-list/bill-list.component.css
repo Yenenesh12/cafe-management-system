@@ -1,0 +1,209 @@
+/* Main container styles */
+
+.container {
+    padding: 0 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* Card styles */
+
+mat-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+mat-card-header {
+    background-color: #f5f5f5;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+mat-card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+}
+
+mat-card-subtitle {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 4px 0 0;
+}
+
+mat-card-content {
+    padding: 24px;
+}
+
+
+/* Action buttons */
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #3f51b5;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #303f9f;
+}
+
+
+/* Table styles */
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+mat-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+mat-header-row {
+    background-color: #f5f5f5;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+}
+
+mat-header-cell {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 0.875rem;
+}
+
+mat-row,
+mat-header-row {
+    display: flex;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+    align-items: center;
+    padding: 0 24px;
+    min-height: 48px;
+}
+
+mat-cell,
+mat-header-cell {
+    flex: 1;
+    overflow: hidden;
+    word-wrap: break-word;
+    min-width: 0;
+    padding: 0 16px;
+}
+
+
+/* Column specific styles */
+
+.mat-column-uuid {
+    flex: 0 0 120px;
+}
+
+.mat-column-name {
+    flex: 1 1 200px;
+}
+
+.mat-column-email {
+    flex: 1 1 200px;
+}
+
+.mat-column-totalAmount {
+    flex: 0 0 120px;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.mat-column-createdAt {
+    flex: 0 0 120px;
+}
+
+.mat-column-actions {
+    flex: 0 0 100px;
+    justify-content: center;
+}
+
+
+/* Button styles in table */
+
+mat-icon-button {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    margin: 0 4px;
+}
+
+mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Loading spinner */
+
+mat-spinner {
+    margin: 24px auto;
+}
+
+
+/* Responsive adjustments */
+
+@media (max-width: 768px) {
+    mat-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .action-buttons {
+        margin-top: 12px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    mat-cell,
+    mat-header-cell {
+        padding: 0 8px;
+    }
+    .mat-column-uuid,
+    .mat-column-totalAmount,
+    .mat-column-createdAt {
+        flex: 0 0 80px;
+    }
+}
+
+@media (max-width: 576px) {
+    mat-card-content {
+        padding: 16px;
+    }
+    mat-row,
+    mat-header-row {
+        padding: 0 8px;
+    }
+    .mat-column-email {
+        display: none;
+    }
+}

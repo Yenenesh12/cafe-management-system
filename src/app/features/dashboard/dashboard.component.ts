@@ -29,10 +29,11 @@ export class DashboardComponent implements OnInit {
   }
 
   loadDashboardData(): void {
-    this.isLoading = true;
-    this.dashboardService.getDashboardDetails().subscribe(
+     this.isLoading = true;
+    this.dashboardService.GetDetails().subscribe(
       (response) => {
         this.dashboardData = response;
+        console.log(response)
         this.isLoading = false;
       },
       (error) => {
@@ -41,5 +42,14 @@ export class DashboardComponent implements OnInit {
         console.error(error);
       }
     );
-  }
-}
+
+  //   this.dashboardService.GetDetails().subscribe((res)=>{
+  //     if(res){
+  //       console.log(res)
+  //       this.dashboardData=res;
+
+  //     }
+  //   })
+  // }
+  // }
+  }}

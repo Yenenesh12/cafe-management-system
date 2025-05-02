@@ -34,17 +34,17 @@ export class UsersComponent implements OnInit {
   }
 
 
-  // updateStatus(user: { id: number; status: boolean }) {
-  //   this.loading = true;
-  //   this.userService.updateUserStatus(user).subscribe(
-  //     () => {
-  //       this.toastr.success('User status updated successfully');
-  //       this.loadUsers();
-  //     },
-  //     error => {
-  //       this.toastr.error('Failed to update user status');
-  //       this.loading = false;
-  //     }
-  //   );
-  // }
+  updateStatus(user: { id: number; status: boolean ;email:string}) {
+    this.loading = true;
+    this.userService.updateUserStatus(user).subscribe(
+      () => {
+        this.toastr.success('User status updated successfully');
+        this.loadUsers();
+      },
+      error => {
+        this.toastr.error('Failed to update user status');
+        this.loading = false;
+      }
+    );
+  }
 }

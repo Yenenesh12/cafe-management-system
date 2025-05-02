@@ -2,7 +2,7 @@
     <div class="header">
         <h2>Category Management</h2>
         <div class="action-buttons">
-            <button class="btn btn-primary" routerLink="/categories/add">Add New Category</button>
+            <button class="btn btn-primary" (click)="addNewCategory()">Add New Category</button>
             <div class="search-box">
                 <input type="text" [(ngModel)]="searchTerm" (input)="filterCategories()" placeholder="Search categories...">
                 <i class="fas fa-search"></i>
