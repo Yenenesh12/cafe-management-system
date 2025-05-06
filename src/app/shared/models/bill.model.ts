@@ -8,7 +8,7 @@ export interface Bill {
   totalAmount: number;
   productDetail: string;
   createdBy?: string;
-  createdAt?: Date;
+  createdAt?: string|Date;
 }
 
 export interface Products {

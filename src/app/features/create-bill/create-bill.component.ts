@@ -60,7 +60,7 @@ export class CreateBillComponent implements OnInit {
 
   ngOnInit(): void {
     // Load products from product service
-    // this.productService.getAllProducts().subscribe(products => this.product = products);
+     this.productService.getAllProducts().subscribe(products => this.product = products);
   }
 
   addProduct(product: Products): void {

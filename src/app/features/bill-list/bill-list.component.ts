@@ -1,17 +1,17 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardContent, MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { BillService } from '../../core/services/bill.service';
 import { SavePdfService } from '../../core/services/save-pdf.service';
 import { Bill } from '../../shared/models/bill.model';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
-import { MatTable, MatTableModule } from '@angular/material/table';
-import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
-import{HttpClientModule} from '@angular/common/http';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-bill-list',
@@ -21,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./bill-list.component.css']
 })
 export class BillListComponent implements OnInit {
-  bills: any[] = [];
+  bills: Bill[] = [];
   displayedColumns: string[] = ['uuid', 'name', 'email', 'totalAmount', 'createdAt', 'actions'];
   isLoading = true;
   isAdmin = false;
@@ -41,35 +41,45 @@ export class BillListComponent implements OnInit {
 
   loadBills(): void {
     this.isLoading = true;
-    this.billService.getBills().subscribe(
+    const token = localStorage.getItem('token');
+    console.log('Token:', token); // ✅ Add this line to debug
+    this.billService.getBills(token).subscribe(
       (bills) => {
         this.bills = bills;
-        console.log(bills);
+        console.log(this.bills); // Optional: log the bills response
         this.isLoading = false;
       },
       (error) => {
+        console.error('Error loading bills:', error); // Optional: show full error
         this.snackBar.open('Error loading bills', 'Close', { duration: 3000 });
         this.isLoading = false;
       }
     );
   }
 
-
   generateReport(): void {
     this.router.navigate(['bills/create', ]);
   }
 
   downloadPdf(uuid: string): void {
-    this.billService.getPdf(uuid).subscribe(
-      (pdfBlob) => {
-        this.savePdfService.savePdf(pdfBlob, `bill_${uuid}.pdf`);
+    this.billService.getPdf(uuid).subscribe({
+      next: (pdfBlob) => {
+        const downloadUrl = window.URL.createObjectURL(pdfBlob);
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = `bill_${uuid}.pdf`;
+        link.click();
+        window.URL.revokeObjectURL(downloadUrl);
         this.snackBar.open('PDF downloaded successfully', 'Close', { duration: 2000 });
       },
-      (error) => {
+      error: (error) => {
+        console.error('Download error:', error);
         this.snackBar.open('Error downloading PDF', 'Close', { duration: 3000 });
       }
-    );
+    });
   }
+
+
 
   formatDate(date: string | Date): string {
     return new Date(date).toLocaleDateString();

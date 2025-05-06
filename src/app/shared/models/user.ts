@@ -13,3 +13,9 @@ export interface ChangePassword {
   OldPassword: string;
   NewPassword: string;
 }
+
+export interface ApiResponse {
+  success: boolean;
+  message: string;
+  data?: any;
+}

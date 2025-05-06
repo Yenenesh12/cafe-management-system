@@ -27,8 +27,11 @@ export class CategoryService {
   getAllCategories(): Observable<any> {
     return this.http.get(`${this.apiUrl}/GetAllCategory`, { headers: this.getHeaders() });
   }
+  deleteCategory(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/deleteCategory/${id}`, {}, { headers: this.getHeaders() });
+  }
 
   updateCategory(category: Category): Observable<any> {
-    return this.http.post(`${this.apiUrl}/updareCategory`, category, { headers: this.getHeaders() });
+    return this.http.post(`${this.apiUrl}/updateCategory`, category, { headers: this.getHeaders() });
   }
 }

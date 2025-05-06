@@ -29,6 +29,9 @@ body {
             cursor: pointer;
             &:hover {
                 color: aqua;
+                a {
+                    text-decoration: none;
+                }
             }
         }
     }
@@ -40,3 +43,9 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+
+/*
+a {
+    text-decoration: none;
+} */
