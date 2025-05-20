@@ -1,10 +1,23 @@
-/* Product List Styles */
+/* Zoom and Inspect Settings */
+html {
+    zoom: 0.9; /* Zoom out effect */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
 
+body {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* Product List Styles */
 .product-container {
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    overflow-x: auto;
 }
 
 .header {
@@ -12,12 +25,15 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .action-buttons {
     display: flex;
     align-items: center;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .search-box {
@@ -29,6 +45,7 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 250px;
+    max-width: 100%;
 }
 
 .search-box i {
@@ -45,6 +62,7 @@
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
+    min-width: 600px;
 }
 
 .product-table th,
@@ -52,6 +70,7 @@
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
+    word-break: break-word;
 }
 
 .product-table th {
@@ -84,6 +103,7 @@
 .actions {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .btn {
@@ -95,6 +115,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn-primary {
@@ -144,9 +165,7 @@
     color: #6c757d;
 }
 
-
 /* Product Form Styles */
-
 .product-form-container {
     max-width: 600px;
     margin: 0 auto;
@@ -154,6 +173,7 @@
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .product-form {
@@ -172,7 +192,7 @@
 
 .form-control {
     width: 100%;
-    padding: 8px 12px;
+    padding: 8px 0.25rem;
     border: 1px solid #ced4da;
     border-radius: 4px;
     font-size: 14px;
@@ -194,6 +214,7 @@
     display: flex;
     gap: 10px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .btn-secondary {
@@ -203,4 +224,56 @@
 
 .btn-secondary:hover {
     background-color: #5a6268;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    html {
+        zoom: 1;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    .product-table {
+        min-width: 100%;
+    }
+
+    .product-table th,
+    .product-table td {
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-container {
+        padding: 15px;
+    }
+
+    .actions {
+        gap: 4px;
+    }
+
+    .btn {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .product-form-container {
+        padding: 15px;
+    }
+}
+
+/* Mobile Tap Targets */
+@media (pointer: coarse) {
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
 }

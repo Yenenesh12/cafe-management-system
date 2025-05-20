@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      contactNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      contactNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$'),Validators.maxLength(10)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -52,4 +52,16 @@ export class SignupComponent implements OnInit {
           this.loading = false;
         });
   }
+  allowOnlyTenDigits(event: KeyboardEvent): void {
+  const input = event.target as HTMLInputElement;
+
+  // Only allow digits (0–9)
+  const isDigit = /[0-9]/.test(event.key);
+
+  // Prevent input if already 10 digits or non-digit
+  if (!isDigit || input.value.length >= 10) {
+    event.preventDefault();
+  }
+}
+
 }

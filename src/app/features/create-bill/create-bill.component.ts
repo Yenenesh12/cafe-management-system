@@ -1,20 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { BillService } from '../../core/services/bill.service';
-import { Product } from '../../shared/models/product.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardContent, MatCardHeader, MatCardModule, MatCardTitle } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { MatOption, MatSelectModule } from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
-import { MatSpinner } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { Products } from '../../shared/models/bill.model';
+import { MatSpinner } from '@angular/material/progress-spinner';
+import { MatOption, MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { BillService } from '../../core/services/bill.service';
 import { ProductService } from '../../core/services/product.service';
+import { Products } from '../../shared/models/bill.model';
 
 @Component({
   selector: 'app-create-bill',
@@ -51,7 +49,7 @@ export class CreateBillComponent implements OnInit {
     this.billForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      contactNumber: ['', Validators.required],
+      contactNumber: ['', Validators.required,Validators.pattern('^[0-9]*$'),Validators.maxLength(10)],
       paymentMethod: ['Cash', Validators.required],
       productDetails: [[]],
       totalAmount: [0]
@@ -121,4 +119,17 @@ export class CreateBillComponent implements OnInit {
       }
     );
   }
+
+  allowOnlyTenDigits(event: KeyboardEvent): void {
+  const input = event.target as HTMLInputElement;
+
+  // Only allow digits (0–9)
+  const isDigit = /[0-9]/.test(event.key);
+
+  // Prevent input if already 10 digits or non-digit
+  if (!isDigit || input.value.length >= 10) {
+    event.preventDefault();
+  }
+}
+
 }

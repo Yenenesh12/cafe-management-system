@@ -1,37 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <h2 class="navbar-brand" routerLink="/">Cafe Management System
-        </h2>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/" routerLinkActive="active" style="cursor: pointer;">Home</a>
-                </li>
-
-            </ul>
-            <ul class="navbar-nav" *ngIf="authService.isAuthenticated()">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/change-password" style="cursor: pointer;">Change Password</a>
-                </li>
-                <li class="nav-item" *ngIf="authService.isAdmin()">
-                    <a class="nav-link" routerLink="/admin/users" routerLinkActive="active">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/products" style="cursor: pointer;">Product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/categories" style="cursor: pointer;">category</a>
-                </li>
-                <li class="nav-item" *ngIf="authService.isAdmin()">
-                    <a class="nav-link" routerLink="/bills" style="cursor: pointer;">Bill</a>
-                </li>
-                <li class=" nav-item ">
-                    <a class="nav-link " (click)="logout() " style="cursor: pointer; ">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<nav class="sidebar" *ngIf="authService.isAuthenticated()">
+  <h2 class="brand" routerLink="/">
+    <i class="fas fa-coffee"></i>☕ Cafe System
+  </h2>
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/home" routerLinkActive="active">
+        <i class="fas fa-home"></i> Home
+      </a>
+    </li>
+    <li>
+      <a routerLink="/change-password">
+        <i class="fas fa-key"></i> Change Password
+      </a>
+    </li>
+    <li *ngIf="authService.isAdmin()">
+      <a routerLink="/admin/users" routerLinkActive="active">
+        <i class="fas fa-users-cog"></i> Users
+      </a>
+    </li>
+    <li>
+      <a routerLink="/products">
+        <i class="fas fa-box"></i> Product
+      </a>
+    </li>
+    <li>
+      <a routerLink="/categories">
+        <i class="fas fa-list"></i> Category
+      </a>
+    </li>
+    <li *ngIf="authService.isAdmin()">
+      <a routerLink="/bills">
+        <i class="fas fa-file-invoice"></i> Bill
+      </a>
+    </li>
+    <li>
+      <a (click)="logout()" style="cursor: pointer;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </li>
+  </ul>
 </nav>

@@ -21,7 +21,7 @@ body {
 }
 
 .container {
-    margin-left: 300px;
+    /* margin-left: 300px; */
     width: 100%;
     max-width: 500px;
     animation: fadeIn 0.6s ease-out;

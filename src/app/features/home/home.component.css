@@ -1,0 +1,86 @@
+.home-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.hero {
+  background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836'); /* Optional background */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: #ffc107;
+  color: #212529;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #e0a800;
+}
+
+.features {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.features h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 280px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.card i {
+  font-size: 40px;
+  color: #ffc107;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  color: #666;
+}

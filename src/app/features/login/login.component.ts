@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule,RouterLink],
+  imports: [CommonModule, ReactiveFormsModule,RouterLink,FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl!: string;
+  showPassword: boolean = false;
+  password: string = '';
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,4 +61,7 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         });
   }
+  togglePasswordVisibility() {
+  this.showPassword = !this.showPassword;
+}
 }

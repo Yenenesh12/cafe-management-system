@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
-import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +10,7 @@ import { MatIcon } from '@angular/material/icon';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  isSidebarOpen = false;
 
   constructor(
     public authService: AuthService,
@@ -24,4 +24,12 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  toggleSidebar() {
+  this.isSidebarOpen = !this.isSidebarOpen;
+}
+
+isMobile() {
+  return window.innerWidth <= 768;
+}
 }

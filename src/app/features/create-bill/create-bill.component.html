@@ -32,9 +32,23 @@
                     <div class="col-md-6">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Contact Number</mat-label>
-                            <input matInput formControlName="contactNumber" required>
+                            <input
+    matInput
+    formControlName="contactNumber"
+    type="tel"
+    maxlength="10"
+    pattern="[0-9]*"
+    inputmode="numeric"
+    (keypress)="allowOnlyTenDigits($event)"
+  />
                             <mat-error *ngIf="billForm.get('contactNumber')?.hasError('required')">
                                 Contact number is required
+                            </mat-error>
+                            <mat-error *ngIf="billForm.get('contactNumber')?.hasError('pattern')">
+                                Only numbers are allowed
+                            </mat-error>
+                            <mat-error *ngIf="billForm.get('contactNumber')?.hasError('maxLength')">
+                                contact number is not greater 10 digits
                             </mat-error>
                         </mat-form-field>
                     </div>

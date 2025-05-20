@@ -6,6 +6,7 @@
     </div>
 
     <div *ngIf="!isLoading" class="dashboard-cards">
+      <div id="dashboard-cards1">
         <div class="dashboard-card category-card">
             <div class="card-icon">
                 <i class="fas fa-tags"></i>
@@ -26,7 +27,8 @@
                 <p class="count">{{ dashboardData.Product || 0 }}</p>
             </div>
         </div>
-
+        </div>
+<div id="dashboard-cards2">
         <div class="dashboard-card bill-card">
             <div class="card-icon">
                 <i class="fas fa-receipt"></i>
@@ -47,6 +49,7 @@
                 </h3>
                 <p class="count">{{ dashboardData.user || 0 }}</p>
             </div>
+        </div>
         </div>
     </div>
 

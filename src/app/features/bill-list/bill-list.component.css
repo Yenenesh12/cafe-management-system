@@ -1,16 +1,34 @@
-/* General container styling */
-
-.container {
-    padding: 16px;
+/* General zoom and inspect settings */
+html {
+    zoom: 0.9; /* Zoom out effect */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
+body {
+    -webkit-user-select: text; /* Allow text selection for inspect */
+    user-select: text;
+    touch-action: manipulation;
+}
+
+/* General container styling */
+.container {
+    padding: 16px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 /* Card styling */
-
 mat-card {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+mat-card:hover {
+    transform: translateY(-2px);
 }
 
 mat-card-header {
@@ -32,27 +50,23 @@ mat-card-subtitle {
     color: #666;
 }
 
-
 /* Action buttons */
-
 .action-buttons {
     margin-left: auto;
 }
 
-
 /* Table styling */
-
 .table-responsive {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 mat-table {
     width: 100%;
+    min-width: 600px; /* Minimum width for table */
 }
 
-
 /* Header row styling */
-
 mat-header-row {
     background-color: #f5f5f5;
 }
@@ -63,69 +77,37 @@ mat-header-cell {
     font-size: 14px;
 }
 
-
 /* Cell styling */
-
 mat-cell {
     padding: 12px 16px;
     font-size: 14px;
     color: #444;
+    word-break: break-word; /* Prevent text overflow */
 }
 
-
 /* Alternate row coloring */
-
 mat-row:nth-child(even) {
     background-color: #fafafa;
 }
 
-
 /* Hover effect */
-
 mat-row:hover {
     background-color: #f0f0f0;
     transition: background-color 0.2s;
 }
 
-
 /* Action buttons in table */
-
 mat-cell button {
     margin: 0 4px;
+    min-width: 0; /* Allow buttons to shrink */
 }
 
-
 /* Spinner styling */
-
 mat-spinner {
     margin: 24px auto;
 }
 
-
-/* Responsive adjustments */
-
-@media (max-width: 768px) {
-    mat-card-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .action-buttons {
-        margin: 16px 0 0 0;
-        width: 100%;
-    }
-    .action-buttons button {
-        width: 100%;
-    }
-    mat-cell,
-    mat-header-cell {
-        padding: 8px 4px;
-        font-size: 12px;
-    }
-}
-
-
 /* Column specific styling */
-
 .mat-column-actions {
     width: 120px;
     text-align: center;
@@ -138,4 +120,110 @@ mat-spinner {
 
 .mat-column-uuid {
     font-family: 'Courier New', monospace;
+}
+
+/* Viewport settings for zoom control */
+@viewport {
+    width: device-width;
+    zoom: 0.9;
+    min-zoom: 0.5;
+    max-zoom: 1.5;
+    user-zoom: fixed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    html {
+        zoom: 1; /* Reset zoom for tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    mat-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 16px;
+    }
+
+    mat-card-title {
+        font-size: 20px;
+    }
+
+    .action-buttons {
+        margin: 12px 0 0 0;
+        width: 100%;
+    }
+
+    .action-buttons button {
+        width: 100%;
+        margin: 4px 0;
+    }
+
+    mat-cell,
+    mat-header-cell {
+        padding: 8px 4px;
+        font-size: 12px;
+    }
+
+    .mat-column-actions {
+        width: 100px;
+    }
+
+    mat-table {
+        min-width: 100%; /* Allow table to shrink on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        zoom: 1; /* Reset zoom for mobile */
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    mat-card {
+        border-radius: 6px;
+    }
+
+    mat-card-title {
+        font-size: 18px;
+    }
+
+    mat-cell,
+    mat-header-cell {
+        padding: 6px 3px;
+        font-size: 11px;
+    }
+
+    .mat-column-actions {
+        width: 80px;
+    }
+
+    mat-cell button {
+        margin: 0 2px;
+        padding: 0 6px;
+        font-size: 11px;
+        min-width: 0;
+    }
+}
+
+/* Mobile tap targets */
+@media (pointer: coarse) {
+    mat-cell button {
+        min-height: 36px;
+        min-width: 36px;
+        padding: 0 8px;
+    }
+
+    mat-row {
+        min-height: 48px; /* Better touch target */
+    }
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
 }

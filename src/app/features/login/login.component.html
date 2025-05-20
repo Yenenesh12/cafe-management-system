@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <label for="email">Email </label>
+                            <label for="email"> Email  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
                             <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                                 <div *ngIf="f['email'].errors['required']">Email is required</div>
@@ -41,41 +41,3 @@
     </div>
 </div>
 
-<!-- <div class="wrapper">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <h2>Login</h2>
-
-        <div class="input-field">
-            <input type="text" formControlName="email" required>
-            <label>Email</label>
-            <div *ngIf="submitted && f.email.errors" class="error">
-                <small *ngIf="f.email.errors['required']">Email is required</small>
-                <small *ngIf="f.email.errors['email']">Invalid email format</small>
-            </div>
-        </div>
-
-        <div class="input-field">
-            <input type="password" formControlName="password" required>
-            <label>Password</label>
-            <div *ngIf="submitted && f.password.errors" class="error">
-                <small *ngIf="f.password.errors['required']">Password is required</small>
-            </div>
-        </div>
-
-        <div class="forget">
-            <label for="remember">
-        <input type="checkbox" id="remember">
-        <p>Remember me</p>
-      </label>
-            <a href="#">Forgot password?</a>
-        </div>
-
-        <button type="submit" [disabled]="loading">
-      {{ loading ? 'Logging in...' : 'Log In' }}
-    </button>
-
-        <div class="register">
-            <p>Don't have an account? <a routerLink="/register">Register</a></p>
-        </div>
-    </form>
-</div> -->

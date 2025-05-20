@@ -1,0 +1,7 @@
+.main-content {
+  margin-left: 220px; /* same as sidebar width */
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  overflow-x: hidden; /* Also prevent internal horizontal scroll */
+}
