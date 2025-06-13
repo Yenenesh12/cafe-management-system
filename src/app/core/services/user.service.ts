@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { User } from '../../shared/models/user';
 
@@ -7,6 +8,7 @@ import { User } from '../../shared/models/user';
   providedIn: 'root'
 })
 export class UserService {
+   private apiUrl = `${environment.apiUrl}/user`;
   constructor(private http: HttpClient) { }
 
   signup(user: User) {
@@ -31,4 +33,8 @@ export class UserService {
   forgotPassword(email: string) {
     return this.http.post(`${environment.apiUrl}/user/forgotPassword`, { email });
   }
+
+   deleteUser(id: number): Observable<{ message: string }> {
+      return this.http.post<{ message: string }>(`${this.apiUrl}/deleteUser/${id}`, {id});
+    }
 }

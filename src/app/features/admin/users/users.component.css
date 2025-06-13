@@ -64,8 +64,8 @@ body {
 }
 
 .table thead th {
-    background-color: var(--primary);
-    color: rgb(31, 29, 29);
+    background-color: #343a40;
+    color: rgb(236, 230, 230);
     padding: 1rem 1.5rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -111,7 +111,7 @@ body {
 
 /* Status Badges */
 
-.table tbody td:last-child {
+ /* .table tbody td:last-child {
     font-weight: 500;
 }
 
@@ -125,8 +125,7 @@ body {
 
 .table tbody td:last-child:contains("Pending") {
     color: #ff9f1c;
-}
-
+}  */
 
 /* Scrollable table for mobile */
 
@@ -179,3 +178,91 @@ body {
 
 
 /* Add more if you expect more rows */
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 0px;
+    font-size: 20px;
+    font-weight: 500;
+    display: inline-block;
+    gap:0px
+}
+/* .actions {
+        gap: 4px;
+    }s
+*/
+    /* .status-badge .btn {
+        padding: 4px 8px;
+        font-size: 12px;
+
+    } */
+
+.status-badge.active {
+
+    color: #198632;
+}
+
+.status-badge.inactive {
+
+    color: #721c24;
+}
+/*
+.actions {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+}
+
+.btn-sm {
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+/* .btn-edit {
+    color: #ffc107;
+
+}
+
+.btn-edit:hover {
+    background-color: #f5ecd1;
+}
+*/
+.btn-delete {
+   color: #dc3545;
+
+}
+
+.btn-delete:hover {
+    background-color: #c2a8ab;
+}
+
+/* .btn-toggle {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-toggle:hover {
+    background-color: #5a6268;
+} */

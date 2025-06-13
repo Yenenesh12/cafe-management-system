@@ -17,7 +17,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>NO</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact Number</th>
@@ -31,7 +31,22 @@
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.contactNumber }}</td>
-                                <td>{{ user.status }}</td>
+                                <td>
+  <span class="status-badge"
+        [class.active]="user.status === 'true'"
+        [class.inactive]="user.status === 'false'">
+    <i class="fas"
+       [ngClass]="user.status === 'true' ? 'fa-check-circle' : 'fa-times-circle'">
+    </i>
+  </span>
+
+  <button class="btn btn-sm btn-toggle" (click)="toggleStatus(user)">
+    <i class="fas" [ngClass]="users.status === 'true' ? 'fa-times' : 'fa-check'"></i>
+  </button>
+   <button class="btn btn-sm btn-delete" (click)="deleteUser(user.id)">
+    <i class="fas fa-trash"></i>
+  </button>
+  </td>
                             </tr>
                         </tbody>
                     </table>

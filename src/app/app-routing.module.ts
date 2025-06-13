@@ -7,6 +7,7 @@ import { BillListComponent } from './features/bill-list/bill-list.component';
 import { CategoryFormComponent } from './features/category-form/category-form.component';
 import { CategoryListComponent } from './features/category-list/category-list.component';
 import { ChangePasswordComponent } from './features/change-password/change-password.component';
+import { ContactComponent } from './features/contact/contact.component';
 import { CreateBillComponent } from './features/create-bill/create-bill.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './features/forgot-password/forgot-password.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
     component: UsersComponent,
     canActivate: [AuthGuard, AdminGuard]
   },
+  {path:'contact',component:ContactComponent,canActivate:[AuthGuard]},
   {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
   { path: 'products', component: ProductListComponent, canActivate: [AuthGuard] },
   { path: 'products/add', component: ProductFormComponent, canActivate: [AuthGuard, AdminGuard] },

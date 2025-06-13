@@ -7,7 +7,7 @@ import { ProductService } from '../../core/services/product.service';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ReactiveFormsModule,FormsModule,CommonModule],
+  imports: [ReactiveFormsModule,FormsModule,CommonModule,],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })

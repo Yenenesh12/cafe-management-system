@@ -1,8 +1,8 @@
-/* Add these styles for the navbar header */
+/* ===== Top Header Bar ===== */
 .navbar-header {
   position: fixed;
   top: 0;
-  left: 220px; /* Same as sidebar width */
+  left: 0;
   right: 0;
   height: 60px;
   background-color: #343a40;
@@ -10,63 +10,96 @@
   align-items: center;
   padding: 0 20px;
   z-index: 999;
+  gap: 15px;
 }
 
+/* Mobile Menu Button (Hidden by Default) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* Circular Logo */
+.navbar-header .logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffc107;
+  transition: transform 0.3s ease;
+}
+
+.navbar-header .logo:hover {
+  transform: scale(1.05);
+}
+
+/* Brand Title */
 .navbar-header .brand {
   color: #fff;
   font-size: 20px;
   font-weight: bold;
-  text-decoration: none;
+  margin: 0;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
-/* Adjust the sidebar to account for the header */
+/* Spacer */
+.navbar-header .spacer {
+  flex: 1;
+}
+
+/* Logout Button */
+.navbar-header .logout-button {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.navbar-header .logout-button:hover {
+  background-color: #495057;
+}
+
+/* ===== Sidebar ===== */
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 60px;
   left: 0;
   width: 220px;
-  height: 100vh;
+  height: calc(100vh - 60px);
   background-color: #343a40;
-  padding-top: 20px;
   color: white;
   z-index: 1000;
   overflow-y: auto;
+  transition: transform 0.3s ease;
 }
 
-/* Push the sidebar content down to account for mobile header */
-@media (max-width: 768px) {
-  .navbar-header {
-    left: 0;
-  }
-
-  .sidebar {
-    top: 60px;
-    height: calc(100vh - 60px);
-  }
-}
-
-/* Rest of your existing sidebar styles remain the same */
 .sidebar .nav-links {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
+  margin: 0;
 }
 
 .sidebar .nav-links li {
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .sidebar .nav-links a {
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
   text-decoration: none;
   display: flex;
   align-items: center;
-  transition: background 0.3s;
+  transition: all 0.3s;
 }
 
 .sidebar .nav-links a:hover,
@@ -76,5 +109,64 @@
 }
 
 .sidebar .nav-links i {
+  width: 24px;
+  text-align: center;
   margin-right: 10px;
+}
+
+/* ===== Mobile Responsiveness ===== */
+@media (max-width: 768px) {
+  /* Show Menu Toggle Button */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Hide Sidebar by Default */
+  .sidebar {
+    transform: translateX(-100%);
+    width: 260px; /* Slightly wider for mobile */
+  }
+
+  /* Show Sidebar When Active */
+  .sidebar.active {
+    transform: translateX(0);
+  }
+}
+
+/* ===== Mobile Menu Button ===== */
+.menu-toggle {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  /* ... existing styles ... */
+  transition: transform 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Show toggle button on mobile */
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 60px);
+    transform: translateX(-100%); /* Hide by default */
+  }
+
+  .sidebar.active {
+    transform: translateX(0); /* Show when active */
+  }
 }

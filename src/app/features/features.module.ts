@@ -17,6 +17,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { SignupComponent } from './signup/signup.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 
@@ -27,6 +28,8 @@ import { SignupComponent } from './signup/signup.component';
 
 
 
+  
+    ContactComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,15 @@
 .main-content {
-  margin-left: 220px; /* same as sidebar width */
+  margin-top: 60px;     /* Height of the top navbar */
+  margin-left: 220px;   /* Width of the sidebar */
   padding: 20px;
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  overflow-x: hidden; /* Also prevent internal horizontal scroll */
+  min-height: calc(100vh - 60px);
+  background-color: #f8f9fa; /* Light background for content */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+
+  }
 }

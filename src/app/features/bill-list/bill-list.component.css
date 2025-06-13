@@ -14,9 +14,10 @@ body {
 /* General container styling */
 .container {
     padding: 16px;
-    width: 100%;
+    width: 75%;
     max-width: 100%;
     overflow-x: hidden;
+
 }
 
 /* Card styling */
@@ -62,19 +63,31 @@ mat-card-subtitle {
 }
 
 mat-table {
-    width: 100%;
+    width: 94%;
     min-width: 600px; /* Minimum width for table */
+
 }
 
 /* Header row styling */
 mat-header-row {
     background-color: #f5f5f5;
+    color: #333;
+
+}
+mat-table th{
+  background-color: #343a40;
+    color: white;
+    font-weight: 500;
+    position: sticky;
+    top: 0;
+
 }
 
 mat-header-cell {
     font-weight: 600;
     color: #333;
     font-size: 14px;
+
 }
 
 /* Cell styling */
@@ -83,6 +96,7 @@ mat-cell {
     font-size: 14px;
     color: #444;
     word-break: break-word; /* Prevent text overflow */
+
 }
 
 /* Alternate row coloring */
@@ -106,7 +120,18 @@ mat-cell button {
 mat-spinner {
     margin: 24px auto;
 }
+.mat-elevation-z8 {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 
+}
+.btn-delete {
+    color: #f44336;
+
+}
+/* .btn-delete :hover{
+   background-color: #c4746e;
+
+} */
 /* Column specific styling */
 .mat-column-actions {
     width: 120px;
@@ -121,6 +146,7 @@ mat-spinner {
 .mat-column-uuid {
     font-family: 'Courier New', monospace;
 }
+
 
 /* Viewport settings for zoom control */
 @viewport {

@@ -2,11 +2,12 @@
     <div class="header">
         <h2>Category Management</h2>
         <div class="action-buttons">
-            <button class="btn btn-primary" (click)="addNewCategory()">Add New Category</button>
-            <div class="search-box">
+           <div class="search-box">
                 <input type="text" [(ngModel)]="searchTerm" (input)="filterCategories()" placeholder="Search categories...">
                 <i class="fas fa-search"></i>
             </div>
+            <button class="btn btn-primary" (click)="addNewCategory()">Add New Category</button>
+
         </div>
     </div>
 
@@ -14,7 +15,7 @@
         <table class="category-table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>NO</th>
                     <th>Name</th>
                     <th>Actions</th>
                 </tr>
@@ -25,10 +26,10 @@
                     <td>{{ category.name }}</td>
                     <td class="actions">
                         <button class="btn btn-sm btn-edit" (click)="editCategory(category.id)">
-              <i class="fas fa-edit"></i> Edit
+              <i class="fas fa-edit"></i>
             </button>
                         <button class="btn btn-sm btn-delete" (click)="deleteCategory(category.id)">
-              <i class="fas fa-trash"></i> Delete
+              <i class="fas fa-trash"></i>
             </button>
                     </td>
                 </tr>

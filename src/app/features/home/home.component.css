@@ -84,3 +84,171 @@
   font-size: 16px;
   color: #666;
 }
+
+/* Footer Base Styles with Zoom Prevention */
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 0px 0 0px;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling on iOS */
+  touch-action: manipulation; /* Disable double-tap zoom */
+}
+
+/* Viewport Control for Mobile Devices */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+  max-zoom: 1.0;
+  min-zoom: 1.0;
+  user-zoom: fixed;
+}
+
+/* Footer Content Layout */
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.footer-section {
+  flex: 1;
+  padding: 0 15px;
+  min-width: 200px; /* Minimum width before wrapping */
+  margin-bottom: 20px;
+}
+
+/* Footer Typography */
+.footer-section h4 {
+  font-size: clamp(1rem, 1.2vw, 1.3rem); /* Responsive font size */
+  margin-bottom: 20px;
+  color: #f8f8f8;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background: #6c757d;
+}
+
+.footer-section p, .footer-section li {
+  margin-bottom: 12px;
+  color: #bbb;
+  font-size: clamp(0.85rem, 1vw, 0.95rem); /* Responsive font size */
+  line-height: 1.5;
+}
+
+/* Links Styling */
+.footer-section a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s;
+  display: inline-block;
+  padding: 2px 0; /* Larger touch target */
+}
+
+.footer-section a:hover {
+  color: #fff;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Icon Styling */
+.footer-section i {
+  margin-right: 10px;
+  width: 18px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  color: #bbb;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-section {
+    padding: 0;
+    min-width: 100%;
+  }
+
+  .footer-section h4::after {
+    width: 40px;
+  }
+
+  /* Prevent zoom on input focus in mobile */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 30px 0 15px;
+  }
+
+  .footer-section {
+    margin-bottom: 25px;
+  }
+
+  .footer-section h4 {
+    margin-bottom: 15px;
+  }
+
+  .footer-bottom p {
+    font-size: 0.75rem;
+  }
+}
+
+/* Tablet Landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-content {
+    gap: 20px;
+  }
+
+  .footer-section {
+    padding: 0 10px;
+  }
+}
+
+/* iOS Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Prevent zooming on iOS */
+  body {
+    touch-action: pan-y;
+  }
+
+  /* Ensure inputs are readable without zoom */
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}

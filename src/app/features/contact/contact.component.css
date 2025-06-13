@@ -1,0 +1,236 @@
+/* Base Styles */
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Prevent Zooming on Mobile */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+  max-zoom: 1.0;
+  min-zoom: 1.0;
+  user-zoom: fixed;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling */
+  touch-action: manipulation; /* Prevent double-tap zoom */
+}
+
+/* Hero Section */
+.contact-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+              url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.contact-hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Responsive font size */
+  margin-bottom: 15px;
+}
+
+/* Contact Section Layout */
+.contact-section {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.contact-info, .contact-form {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Info Items */
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.info-item i {
+  font-size: 1.5rem;
+  color: #6c757d;
+  margin-right: 15px;
+  margin-top: 5px;
+  min-width: 24px; /* Prevent icon shifting */
+}
+
+.info-item h3 {
+  margin-bottom: 5px;
+  color: #343a40;
+  font-size: 1.1rem;
+}
+
+.info-item p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+/* Form Styles */
+.contact-form h2, .contact-info h2 {
+  margin-bottom: 20px;
+  color: #343a40;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  max-width: 100%; /* Prevent overflow */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical; /* Only allow vertical resizing */
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #6c757d;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 200px;
+}
+
+.btn-primary:hover {
+  background-color: #5a6268;
+}
+
+.btn-primary:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Map Container */
+.map-container {
+  margin-bottom: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.map-container iframe {
+  display: block;
+  width: 100%;
+  height: 450px;
+  border: 0;
+}
+
+/* Mobile Inspection Styles */
+@media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-hero {
+    padding: 60px 20px;
+    background-attachment: scroll; /* Fix background on mobile */
+  }
+
+  .info-item {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .btn-primary {
+    max-width: 100%;
+  }
+
+  /* Form inputs more mobile-friendly */
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px; /* Prevent iOS zoom */
+    padding: 14px;
+  }
+
+  /* Prevent form zoom on focus in iOS */
+  @media (max-device-width: 480px) {
+    select:focus,
+    textarea:focus,
+    input:focus {
+      font-size: 16px;
+    }
+  }
+}
+
+/* Very Small Screens */
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 15px;
+  }
+
+  .contact-info, .contact-form {
+    padding: 20px;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .info-item i {
+    margin-bottom: 8px;
+  }
+
+  .map-container iframe {
+    height: 300px;
+  }
+}
+
+/* Tablet Landscape and Small Desktops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .contact-section {
+    gap: 20px;
+  }
+
+  .contact-info, .contact-form {
+    padding: 20px;
+  }
+}
+
+/* Prevent input zoom on iOS */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}

@@ -17,7 +17,7 @@ body {
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 90%;
     overflow-x: auto;
 }
 
@@ -65,7 +65,7 @@ body {
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
-    min-width: 600px;
+    min-width: 300px;
 }
 
 .category-table th,
@@ -122,21 +122,21 @@ body {
 }
 
 .btn-edit {
-    background-color: #ffc107;
-    color: #212529;
+    color: #ffc107;
+
 }
 
 .btn-edit:hover {
-    background-color: #e0a800;
+    background-color: #ede2c0;
 }
 
 .btn-delete {
-    background-color: #dc3545;
-    color: white;
+    color: #dc3545;
+
 }
 
 .btn-delete:hover {
-    background-color: #c82333;
+    background-color: #ede3e4;
 }
 
 .no-categories {

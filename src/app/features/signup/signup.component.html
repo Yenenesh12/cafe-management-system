@@ -10,14 +10,14 @@
                         <div class="form-group">
                             <label for="name">Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 
-                            <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Full Name"  [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
                             <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
                                 <div *ngIf="f['name'].errors['required']">Name is required</div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter valid email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
                             <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                                 <div *ngIf="f['email'].errors['required']">Email is required</div>
                                 <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
@@ -25,7 +25,8 @@
                         </div>
                         <div class="form-group">
                             <label for="contactNumber">Contact Number </label>
-                            <input type="text" class="form-control" id="contactNumber" formControlName="contactNumber" [ngClass]="{ 'is-invalid': submitted && f['contactNumber'].errors } " (keypress)="allowOnlyTenDigits($event)">
+                            <input type="text" class="form-control" id="contactNumber" formControlName="contactNumber"
+                            placeholder="Enter contact number" [ngClass]="{ 'is-invalid': submitted && f['contactNumber'].errors } " (keypress)="allowOnlyTenDigits($event)">
                             <div *ngIf="submitted && f['contactNumber'].errors" class="invalid-feedback">
                                 <div *ngIf="f['contactNumber'].errors['required']">Contact number is required</div>
                                 <div *ngIf="f['contactNumber'].errors['pattern']">Only numbers are allowed</div>
@@ -34,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password"[ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
                             <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                                 <div *ngIf="f['password'].errors['required']">Password is required</div>
                                 <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>

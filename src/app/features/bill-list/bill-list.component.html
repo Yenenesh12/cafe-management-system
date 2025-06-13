@@ -2,9 +2,9 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>Bills</mat-card-title>
-            <mat-card-subtitle>List of all generated bills</mat-card-subtitle>
+
             <div class="action-buttons">
-                <button mat-raised-button color="primary" (click)="generateReport()">
+                <button mat-raised-button color="btn btn-primary" (click)="generateReport()">
                     Generate Report
                     </button>
             </div>
@@ -40,7 +40,7 @@
                     <ng-container matColumnDef="createdAt">
                         <th mat-header-cell *matHeaderCellDef>Date</th>
                         <td mat-cell *matCellDef="let element">
-                            {{element?.createdAt ? (element.createdAt | date:'mediumDate') : 'N/A'}}
+                            {{element?.createdAt ? (element.createdAt | date:'dd/mm/yyyy') : 'N/A'}}
                         </td>
                     </ng-container>
 
@@ -51,7 +51,7 @@
                             <button mat-icon-button color="primary" (click)="downloadPdf(element.uuid)" matTooltip="Download PDF">
                 <mat-icon>download</mat-icon>
               </button>
-                            <button mat-icon-button color="warn" *ngIf="isAdmin" (click)="deleteBill(element.id)" matTooltip="Delete Bill">
+                            <button mat-icon-button class="btn-delete" color="warn" *ngIf="isAdmin" (click)="deleteBill(element.id)" matTooltip="Delete Bill">
                 <mat-icon>delete</mat-icon>
               </button>
                         </td>

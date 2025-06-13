@@ -2,11 +2,12 @@
     <div class="header">
         <h2>Product Management</h2>
         <div class="action-buttons">
-            <button class="btn btn-primary" (click)="addNewProduct()">Add New Product</button>
             <div class=" search-box ">
                 <input type="text " [(ngModel)]="searchTerm " (input)="filterProducts() " placeholder="Search products... ">
                 <i class="fas fa-search "></i>
             </div>
+            <button class="btn btn-primary" (click)="addNewProduct()">Add New Product</button>
+
         </div>
     </div>
 
@@ -14,12 +15,12 @@
         <table class="product-table ">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>NO</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Category</th>
                     <th>Price</th>
-                    <th>Status</th>
+                    <!-- <th>Status</th> -->
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -30,22 +31,28 @@
                     <td>{{ product.description }}</td>
                     <td>{{ product.categoryName }}</td>
                     <td>{{ product.price }}</td>
-                    <td>
-                        <span class="status-badge " [class.active]="product.status==='true' " [class.inactive]="product.status==='false' ">
-              {{ product.status === 'true' ? 'Active' : 'Inactive' }}
-            </span>
-                    </td>
-                    <td class="actions ">
-                        <button class="btn btn-sm btn-edit " (click)="editProduct(product.id) ">
-              <i class="fas fa-edit "></i>
-            </button>
-                        <button class="btn btn-sm btn-delete " (click)="deleteProduct(product.id) ">
-              <i class="fas fa-trash "></i>
-            </button>
-                        <button class="btn btn-sm btn-toggle " (click)="toggleStatus(product) ">
-              {{ product.status === 'true' ? 'Deactivate' : 'Activate' }}
-            </button>
-                    </td>
+<!-- <td>
+  <span class="status-badge"
+        [class.active]="product.status === 'true'"
+        [class.inactive]="product.status === 'false'">
+    <i class="fas"
+       [ngClass]="product.status === 'true' ? 'fa-check-circle' : 'fa-times-circle'">
+    </i>
+  </span>
+</td> -->
+<td class="actions">
+  <button class="btn btn-sm btn-edit" (click)="editProduct(product.id)">
+    <i class="fas fa-edit"></i>
+  </button>
+  <button class="btn btn-sm btn-delete" (click)="deleteProduct(product.id)">
+    <i class="fas fa-trash"></i>
+  </button>
+  <!-- <button class="btn btn-sm btn-toggle" (click)="toggleStatus(product)">
+    <i class="fas" [ngClass]="product.status === 'true' ? 'fa-times' : 'fa-check'"></i>
+  </button> -->
+</td>
+
+
                 </tr>
                 <tr *ngIf="filteredProducts.length===0 ">
                     <td colspan="7 " class="no-products ">No products found</td>

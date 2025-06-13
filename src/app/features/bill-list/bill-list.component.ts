@@ -46,7 +46,7 @@ export class BillListComponent implements OnInit {
     this.billService.getBills(token).subscribe(
       (bills) => {
         this.bills = bills;
-        console.log(this.bills); // Optional: log the bills response
+        console.log("bills",this.bills); // Optional: log the bills response
         this.isLoading = false;
       },
       (error) => {

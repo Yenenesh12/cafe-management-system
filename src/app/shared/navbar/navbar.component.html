@@ -1,41 +1,49 @@
-<nav class="sidebar" *ngIf="authService.isAuthenticated()">
-  <h2 class="brand" routerLink="/">
-    <i class="fas fa-coffee"></i>☕ Cafe System
-  </h2>
+<!-- Top Header Bar -->
+<div class="navbar-header" *ngIf="authService.isAuthenticated()">
+  <img src="assets/img/logo-new.png" class="logo" alt="Cafe Logo" style="border-radius: 50%; width: 55px; height: 55px; object-fit: cover;">
+  <h2 class="brand" routerLink="/">☕ Cafe System</h2>
+  <button class="menu-toggle" (click)="toggleSidebar()">
+  <i class="fas fa-bars"></i>
+</button>
+  <div class="spacer"></div>
+  <a (click)="logout()" class="logout-button" style="cursor: pointer;">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </a>
+</div>
+
+
+<!-- Sidebar -->
+<nav class="sidebar" *ngIf="authService.isAuthenticated()" [class.active]="isSidebarActive">
   <ul class="nav-links">
     <li>
-      <a routerLink="/home" routerLinkActive="active">
+      <a routerLink="/home" (click)="isSidebarActive = false" routerLinkActive="active">
         <i class="fas fa-home"></i> Home
       </a>
+
     </li>
     <li>
-      <a routerLink="/change-password">
+      <a routerLink="/change-password" (click)="isSidebarActive = false">
         <i class="fas fa-key"></i> Change Password
       </a>
     </li>
     <li *ngIf="authService.isAdmin()">
-      <a routerLink="/admin/users" routerLinkActive="active">
+      <a routerLink="/admin/users" (click)="isSidebarActive = false" routerLinkActive="active">
         <i class="fas fa-users-cog"></i> Users
       </a>
     </li>
     <li>
-      <a routerLink="/products">
-        <i class="fas fa-box"></i> Product
-      </a>
-    </li>
-    <li>
-      <a routerLink="/categories">
+      <a routerLink="/categories" (click)="isSidebarActive = false">
         <i class="fas fa-list"></i> Category
       </a>
     </li>
-    <li *ngIf="authService.isAdmin()">
-      <a routerLink="/bills">
-        <i class="fas fa-file-invoice"></i> Bill
+    <li>
+      <a routerLink="/products" (click)="isSidebarActive = false">
+        <i class="fas fa-box"></i> Product
       </a>
     </li>
-    <li>
-      <a (click)="logout()" style="cursor: pointer;">
-        <i class="fas fa-sign-out-alt"></i> Logout
+    <li *ngIf="authService.isAdmin()">
+      <a routerLink="/bills" (click)="isSidebarActive = false">
+        <i class="fas fa-file-invoice" ></i> Bill
       </a>
     </li>
   </ul>

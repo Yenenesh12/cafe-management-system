@@ -1,3 +1,4 @@
+// Component Class (create-bill.component.ts)
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -16,7 +17,8 @@ import { Products } from '../../shared/models/bill.model';
 
 @Component({
   selector: 'app-create-bill',
-  imports: [  MatInputModule,
+  imports: [
+    MatInputModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatCardContent,
@@ -24,10 +26,14 @@ import { Products } from '../../shared/models/bill.model';
     MatCardHeader,
     MatCardModule,
     CommonModule,
-    MatOption,MatIcon,
-    MatSpinner,MatCardModule,MatListModule,FormsModule,MatSelectModule
-
-],
+    MatOption,
+    MatIcon,
+    MatSpinner,
+    MatCardModule,
+    MatListModule,
+    FormsModule,
+    MatSelectModule
+  ],
   templateUrl: './create-bill.component.html',
   styleUrls: ['./create-bill.component.css']
 })
@@ -44,12 +50,11 @@ export class CreateBillComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private productService: ProductService
-
   ) {
     this.billForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      contactNumber: ['', Validators.required,Validators.pattern('^[0-9]*$'),Validators.maxLength(10)],
+      contactNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(10)]],
       paymentMethod: ['Cash', Validators.required],
       productDetails: [[]],
       totalAmount: [0]
@@ -57,8 +62,7 @@ export class CreateBillComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Load products from product service
-     this.productService.getAllProducts().subscribe(products => this.product = products);
+    this.productService.getAllProducts().subscribe(products => this.product = products);
   }
 
   addProduct(product: Products): void {
@@ -82,7 +86,10 @@ export class CreateBillComponent implements OnInit {
   }
 
   updateQuantity(product: Products, quantity: number): void {
-    product.quantity = quantity;
+    if (quantity < 1) {
+      quantity = 1;
+      product.quantity = quantity;
+    }
     product.total = product.quantity * product.price;
     this.updateForm();
   }
@@ -121,15 +128,10 @@ export class CreateBillComponent implements OnInit {
   }
 
   allowOnlyTenDigits(event: KeyboardEvent): void {
-  const input = event.target as HTMLInputElement;
-
-  // Only allow digits (0–9)
-  const isDigit = /[0-9]/.test(event.key);
-
-  // Prevent input if already 10 digits or non-digit
-  if (!isDigit || input.value.length >= 10) {
-    event.preventDefault();
+    const input = event.target as HTMLInputElement;
+    const isDigit = /[0-9]/.test(event.key);
+    if (!isDigit || input.value.length >= 10) {
+      event.preventDefault();
+    }
   }
-}
-
 }

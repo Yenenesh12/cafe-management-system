@@ -1,3 +1,4 @@
+<!-- Template (create-bill.component.html) -->
 <div class="container mt-4">
     <mat-card>
         <mat-card-header>
@@ -33,14 +34,14 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Contact Number</mat-label>
                             <input
-    matInput
-    formControlName="contactNumber"
-    type="tel"
-    maxlength="10"
-    pattern="[0-9]*"
-    inputmode="numeric"
-    (keypress)="allowOnlyTenDigits($event)"
-  />
+                                matInput
+                                formControlName="contactNumber"
+                                type="tel"
+                                maxlength="10"
+                                pattern="[0-9]*"
+                                inputmode="numeric"
+                                (keypress)="allowOnlyTenDigits($event)"
+                            />
                             <mat-error *ngIf="billForm.get('contactNumber')?.hasError('required')">
                                 Contact number is required
                             </mat-error>
@@ -75,9 +76,9 @@
                                     <mat-list-item *ngFor="let product of product">
                                         <div class="d-flex justify-content-between w-100">
                                             <span>{{product.name}} - ${{product.price | number:'1.2-2'}}</span>
-                                            <button mat-icon-button color="primary" (click)="addProduct(product)">
-                        <mat-icon> add</mat-icon>
-                      </button>
+                                            <button mat-icon-button color="primary" (click)="addProduct(product)" type="button">
+                                                <mat-icon>add</mat-icon>
+                                            </button>
                                         </div>
                                     </mat-list-item>
                                 </mat-list>
@@ -100,12 +101,14 @@
                                             <div class="d-flex align-items-center">
                                                 <mat-form-field appearance="outline" class="quantity-field">
                                                     <mat-label>Qty</mat-label>
-                                                    <input matInput type="number" min="1" [(ngModel)]="product.quantity" [ngModelOptions]="{standalone: true}" (change)="updateQuantity(product, product.quantity)">
+                                                    <input matInput type="number" min="1" [(ngModel)]="product.quantity"
+                                                           [ngModelOptions]="{standalone: true}"
+                                                           (change)="updateQuantity(product, product.quantity)">
                                                 </mat-form-field>
                                                 <span class="mx-2">${{product.total | number:'1.2-2'}}</span>
-                                                <button mat-icon-button color="warn" (click)="removeProduct(i)">
-                          <mat-icon> delete</mat-icon>
-                        </button>
+                                                <button mat-icon-button color="warn" (click)="removeProduct(i)" type="button">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
                                             </div>
                                         </div>
                                     </mat-list-item>
@@ -123,9 +126,9 @@
 
                 <div class="text-center mt-4">
                     <button mat-raised-button color="primary" type="submit" [disabled]="isLoading">
-            <span *ngIf="!isLoading">Generate Bill</span>
-            <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
-          </button>
+                        <span *ngIf="!isLoading">Generate Bill</span>
+                        <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
+                    </button>
                 </div>
             </form>
         </mat-card-content>
