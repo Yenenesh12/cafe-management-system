@@ -2,12 +2,11 @@
     <div class="header">
         <h2>Category Management</h2>
         <div class="action-buttons">
-           <div class="search-box">
+            <div class="search-box">
                 <input type="text" [(ngModel)]="searchTerm" (input)="filterCategories()" placeholder="Search categories...">
                 <i class="fas fa-search"></i>
             </div>
             <button class="btn btn-primary" (click)="addNewCategory()">Add New Category</button>
-
         </div>
     </div>
 
@@ -21,16 +20,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let category of filteredCategories">
-                    <td>{{ category.id }}</td>
+                <tr *ngFor="let category of pagedCategories; let i = index">
+                    <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
                     <td>{{ category.name }}</td>
                     <td class="actions">
                         <button class="btn btn-sm btn-edit" (click)="editCategory(category.id)">
-              <i class="fas fa-edit"></i>
-            </button>
+                            <i class="fas fa-edit"></i>
+                        </button>
                         <button class="btn btn-sm btn-delete" (click)="deleteCategory(category.id)">
-              <i class="fas fa-trash"></i>
-            </button>
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
                 <tr *ngIf="filteredCategories.length === 0">
@@ -38,5 +37,22 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls" *ngIf="filteredCategories.length > pageSize">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">
+            &laquo; Previous
+        </button>
+        <span class="page-numbers">
+            Page {{currentPage}} of {{totalPages}}
+        </span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+            Next &raquo;
+        </button>
+        <!-- <span class="page-size-info">
+            Showing {{(currentPage - 1) * pageSize + 1}} -
+            {{getDisplayEnd()}} of {{filteredCategories.length}} categories
+        </span> -->
     </div>
 </div>

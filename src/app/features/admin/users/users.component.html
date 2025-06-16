@@ -7,11 +7,6 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <h3 class="text-center">Users List</h3>
-                    <!-- <div class="action-buttons">
-                        <button mat-raised-button color="primary" (click)="updateStatus(users)">
-                          Update Status
-                          </button>
-                    </div> -->
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -25,31 +20,66 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of users">
-                                <td>{{ user.id ?? 0 }}</td>
-                                <!-- Default to 0 if undefined -->
+                            <tr *ngFor="let user of paginatedUsers; let i = index" [ngClass]="{'inactive': user.status === 'false'}">
+                                <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.contactNumber }}</td>
                                 <td>
-  <span class="status-badge"
-        [class.active]="user.status === 'true'"
-        [class.inactive]="user.status === 'false'">
-    <i class="fas"
-       [ngClass]="user.status === 'true' ? 'fa-check-circle' : 'fa-times-circle'">
-    </i>
-  </span>
-
-  <button class="btn btn-sm btn-toggle" (click)="toggleStatus(user)">
-    <i class="fas" [ngClass]="users.status === 'true' ? 'fa-times' : 'fa-check'"></i>
-  </button>
-   <button class="btn btn-sm btn-delete" (click)="deleteUser(user.id)">
-    <i class="fas fa-trash"></i>
-  </button>
-  </td>
+                                    <button class="btn-toggle me-2" (click)="toggleStatus(user)">
+                                        <i class="fas" [ngClass]="user.status === 'true' ? 'fa-toggle-on' : 'fa-toggle-off'"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-delete" (click)="deleteUser(user.id)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <!-- Pagination Controls -->
+                    <div class="pagination-wrapper">
+                        <!-- <div class="pagination-info">
+                            Showing <span class="highlight">{{ (currentPage - 1) * itemsPerPage + 1 }}</span> to
+                            <span class="highlight">{{ getEndIndex() }}</span> of
+                            <span class="highlight">{{ users.length }}</span> entries
+                        </div> -->
+
+                        <div class="flex-pagination">
+                            <button class="pagination-btn"
+                                    [disabled]="currentPage === 1"
+                                    (click)="goToPage(1)">
+                                &laquo;
+                            </button>
+
+                            <button class="pagination-btn"
+                                    [disabled]="currentPage === 1"
+                                    (click)="goToPage(currentPage - 1)">
+                                &lsaquo;
+                            </button>
+
+                            <div class="page-numbers">
+                                <button *ngFor="let page of getPages()"
+                                        class="page-btn"
+                                        [class.active]="page === currentPage"
+                                        (click)="goToPage(page)">
+                                    {{ page }}
+                                </button>
+                            </div>
+
+                            <button class="pagination-btn"
+                                    [disabled]="currentPage === totalPages"
+                                    (click)="goToPage(currentPage + 1)">
+                                &rsaquo;
+                            </button>
+
+                            <button class="pagination-btn"
+                                    [disabled]="currentPage === totalPages"
+                                    (click)="goToPage(totalPages)">
+                                &raquo;
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

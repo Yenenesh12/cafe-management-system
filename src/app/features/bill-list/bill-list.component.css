@@ -1,23 +1,27 @@
 /* General zoom and inspect settings */
 html {
-    zoom: 0.9; /* Zoom out effect */
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+    zoom: 0.9;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
 }
 
 body {
-    -webkit-user-select: text; /* Allow text selection for inspect */
+    -webkit-user-select: text;
     user-select: text;
     touch-action: manipulation;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdfdfd;
 }
 
-/* General container styling */
+/* Container styling */
 .container {
     padding: 16px;
     width: 75%;
     max-width: 100%;
     overflow-x: hidden;
-
+    margin: auto;
 }
 
 /* Card styling */
@@ -26,6 +30,8 @@ mat-card {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s ease;
+    margin-bottom: 20px;
+    background-color: #fff;
 }
 
 mat-card:hover {
@@ -56,47 +62,42 @@ mat-card-subtitle {
     margin-left: auto;
 }
 
-/* Table styling */
+/* Table Styling */
 .table-responsive {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 mat-table {
     width: 94%;
-    min-width: 600px; /* Minimum width for table */
-
+    min-width: 600px;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    border-radius: 8px;
 }
 
 /* Header row styling */
 mat-header-row {
     background-color: #f5f5f5;
     color: #333;
-
 }
-mat-table th{
-  background-color: #343a40;
+
+mat-table th {
+    background-color: #343a40;
     color: white;
     font-weight: 500;
     position: sticky;
     top: 0;
-
 }
 
-mat-header-cell {
-    font-weight: 600;
-    color: #333;
-    font-size: 14px;
-
-}
-
-/* Cell styling */
+/* Header and cell border styling */
+mat-header-cell,
 mat-cell {
+    border: 1px solid #ddd;
     padding: 12px 16px;
     font-size: 14px;
     color: #444;
-    word-break: break-word; /* Prevent text overflow */
-
+    word-break: break-word;
 }
 
 /* Alternate row coloring */
@@ -110,29 +111,33 @@ mat-row:hover {
     transition: background-color 0.2s;
 }
 
-/* Action buttons in table */
+/* Buttons inside cells */
 mat-cell button {
     margin: 0 4px;
-    min-width: 0; /* Allow buttons to shrink */
+    min-width: 0;
 }
 
-/* Spinner styling */
+/* Spinner */
 mat-spinner {
     margin: 24px auto;
 }
+
 .mat-elevation-z8 {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-
 }
-.btn-delete {
-    color: #f44336;
 
+/* Delete button */
+.download-btn {
+  color: #3f51b5;
+  background-color: rgba(63, 81, 181, 0.1);
 }
-/* .btn-delete :hover{
-   background-color: #c4746e;
 
-} */
-/* Column specific styling */
+.delete-btn {
+  color: #dc1d1d;
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+/* Column-specific styling */
 .mat-column-actions {
     width: 120px;
     text-align: center;
@@ -147,8 +152,7 @@ mat-spinner {
     font-family: 'Courier New', monospace;
 }
 
-
-/* Viewport settings for zoom control */
+/* Responsive Viewport Zoom Settings */
 @viewport {
     width: device-width;
     zoom: 0.9;
@@ -157,13 +161,14 @@ mat-spinner {
     user-zoom: fixed;
 }
 
-/* Responsive adjustments */
+/* Tablet view */
 @media (max-width: 1024px) {
     html {
-        zoom: 1; /* Reset zoom for tablet */
+        zoom: 1;
     }
 }
 
+/* Mobile view adjustments */
 @media (max-width: 768px) {
     mat-card-header {
         flex-direction: column;
@@ -176,7 +181,7 @@ mat-spinner {
     }
 
     .action-buttons {
-        margin: 12px 0 0 0;
+        margin-top: 12px;
         width: 100%;
     }
 
@@ -196,13 +201,14 @@ mat-spinner {
     }
 
     mat-table {
-        min-width: 100%; /* Allow table to shrink on mobile */
+        min-width: 100%;
     }
 }
 
+/* Smaller mobile view */
 @media (max-width: 480px) {
     html {
-        zoom: 1; /* Reset zoom for mobile */
+        zoom: 1;
     }
 
     .container {
@@ -235,7 +241,7 @@ mat-spinner {
     }
 }
 
-/* Mobile tap targets */
+/* Touch targets for coarse pointers */
 @media (pointer: coarse) {
     mat-cell button {
         min-height: 36px;
@@ -244,12 +250,6 @@ mat-spinner {
     }
 
     mat-row {
-        min-height: 48px; /* Better touch target */
+        min-height: 48px;
     }
-}
-
-/* Prevent text size adjustment on orientation change */
-html {
-    -webkit-text-size-adjust: none;
-    text-size-adjust: none;
 }

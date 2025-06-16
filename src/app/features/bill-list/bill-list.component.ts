@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardContent, MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -15,16 +16,33 @@ import { Bill } from '../../shared/models/bill.model';
 
 @Component({
   selector: 'app-bill-list',
-  imports: [MatCardModule,MatIconModule,MatSpinner,MatTableModule,MatCardContent,CommonModule,HttpClientModule,
-    MatButtonModule,MatProgressSpinnerModule,MatSnackBarModule ],
+  standalone: true,
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    MatCardModule,
+    MatIconModule,
+    MatTableModule,
+    MatCardContent,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatPaginatorModule
+  ],
   templateUrl: './bill-list.component.html',
   styleUrls: ['./bill-list.component.css']
 })
 export class BillListComponent implements OnInit {
   bills: Bill[] = [];
+  paginatedBills: Bill[] = [];
   displayedColumns: string[] = ['uuid', 'name', 'email', 'totalAmount', 'createdAt', 'actions'];
   isLoading = true;
   isAdmin = false;
+
+  // Pagination properties
+  pageIndex = 0;
+  pageSize = 5;
+  pageSizeOptions = [5, 10, 20];
 
   constructor(
     private billService: BillService,
@@ -42,23 +60,34 @@ export class BillListComponent implements OnInit {
   loadBills(): void {
     this.isLoading = true;
     const token = localStorage.getItem('token');
-    console.log('Token:', token); // ✅ Add this line to debug
     this.billService.getBills(token).subscribe(
       (bills) => {
         this.bills = bills;
-        console.log("bills",this.bills); // Optional: log the bills response
+        this.updatePaginatedBills();
         this.isLoading = false;
       },
       (error) => {
-        console.error('Error loading bills:', error); // Optional: show full error
+        console.error('Error loading bills:', error);
         this.snackBar.open('Error loading bills', 'Close', { duration: 3000 });
         this.isLoading = false;
       }
     );
   }
 
+  handlePageEvent(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePaginatedBills();
+  }
+
+  updatePaginatedBills() {
+    const startIndex = this.pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedBills = this.bills.slice(startIndex, endIndex);
+  }
+
   generateReport(): void {
-    this.router.navigate(['bills/create', ]);
+    this.router.navigate(['bills/create']);
   }
 
   downloadPdf(uuid: string): void {
@@ -77,16 +106,6 @@ export class BillListComponent implements OnInit {
         this.snackBar.open('Error downloading PDF', 'Close', { duration: 3000 });
       }
     });
-  }
-
-
-
-  formatDate(date: string | Date): string {
-    return new Date(date).toLocaleDateString();
-  }
-
-  formatCurrency(amount: number): string {
-    return '$' + amount.toFixed(2);
   }
 
   deleteBill(id: number): void {

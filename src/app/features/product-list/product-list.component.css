@@ -342,3 +342,35 @@ html {
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
 }
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.btn-pagination {
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.btn-pagination:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-info {
+    font-weight: bold;
+}
+
+.page-size-selector {
+    margin-left: 20px;
+}
+
+.page-size-selector select {
+    margin-left: 5px;
+    padding: 3px;
+}

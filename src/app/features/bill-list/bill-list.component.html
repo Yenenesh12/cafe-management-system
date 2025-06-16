@@ -1,70 +1,84 @@
 <div class="container mt-4">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Bills</mat-card-title>
-
+    <mat-card class="elevated-card">
+        <mat-card-header class="card-header">
+            <mat-card-title class="card-title">Bills</mat-card-title>
             <div class="action-buttons">
-                <button mat-raised-button color="btn btn-primary" (click)="generateReport()">
-                    Generate Report
-                    </button>
+                <button mat-raised-button class="generate-btn" (click)="generateReport()">
+                    <mat-icon>add</mat-icon> Generate Report
+                </button>
             </div>
         </mat-card-header>
+
         <mat-card-content>
-            <div class="table-responsive">
-                <mat-table [dataSource]="bills" class="mat-elevation-z8" *ngIf="!isLoading">
+            <div class="table-container">
+                <mat-table [dataSource]="paginatedBills" class="data-table" *ngIf="!isLoading">
                     <!-- UUID Column -->
                     <ng-container matColumnDef="uuid">
                         <th mat-header-cell *matHeaderCellDef> No</th>
-                        <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+                        <td mat-cell *matCellDef="let element; let i = index" class="serial-number">
+                            {{ i + 1 + (pageIndex * pageSize) }}
+                        </td>
                     </ng-container>
 
                     <!-- Name Column -->
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef> Customer Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        <td mat-cell *matCellDef="let element" class="customer-name"> {{element.name}} </td>
                     </ng-container>
 
                     <!-- Email Column -->
                     <ng-container matColumnDef="email">
                         <th mat-header-cell *matHeaderCellDef> Email </th>
-                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        <td mat-cell *matCellDef="let element" class="customer-email"> {{element.email}} </td>
                     </ng-container>
 
                     <!-- Total Amount Column -->
                     <ng-container matColumnDef="totalAmount">
                         <th mat-header-cell *matHeaderCellDef> Total Amount </th>
-                        <td mat-cell *matCellDef="let element"> ${{element.totalAmount | number:'1.2-2'}} </td>
+                        <td mat-cell *matCellDef="let element" class="amount-cell">
+                            <span class="amount-badge">${{element.totalAmount | number:'1.2-2'}}</span>
+                        </td>
                     </ng-container>
 
                     <!-- Created At Column -->
                     <ng-container matColumnDef="createdAt">
                         <th mat-header-cell *matHeaderCellDef>Date</th>
-                        <td mat-cell *matCellDef="let element">
-                            {{element?.createdAt ? (element.createdAt | date:'dd/mm/yyyy') : 'N/A'}}
+                        <td mat-cell *matCellDef="let element" class="date-cell">
+                            <span class="date-badge">
+                                {{element?.createdAt ? (element.createdAt | date:'dd/MM/yyyy') : 'N/A'}}
+                            </span>
                         </td>
                     </ng-container>
 
                     <!-- Actions Column -->
                     <ng-container matColumnDef="actions">
-                        <th mat-header-cell *matHeaderCellDef> Actions </th>
-                        <td mat-cell *matCellDef="let element">
-                            <button mat-icon-button color="primary" (click)="downloadPdf(element.uuid)" matTooltip="Download PDF">
-                <mat-icon>download</mat-icon>
-              </button>
-                            <button mat-icon-button class="btn-delete" color="warn" *ngIf="isAdmin" (click)="deleteBill(element.id)" matTooltip="Delete Bill">
-                <mat-icon>delete</mat-icon>
-              </button>
+                        <th mat-header-cell *matHeaderCellDef class="actions-header"> Actions </th>
+                        <td mat-cell *matCellDef="let element" class="actions-cell">
+                            <button mat-icon-button class="action-btn download-btn" (click)="downloadPdf(element.uuid)" matTooltip="Download PDF">
+                                <mat-icon>download</mat-icon>
+                            </button>
+                            <button mat-icon-button class="action-btn delete-btn" color="warn" *ngIf="isAdmin" (click)="deleteBill(element.id)" matTooltip="Delete Bill">
+                                <mat-icon>delete</mat-icon>
+                            </button>
                         </td>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="data-row"></tr>
                 </mat-table>
 
-                <mat-spinner *ngIf="isLoading" class="mx-auto"></mat-spinner>
+                <mat-spinner *ngIf="isLoading" class="loading-spinner"></mat-spinner>
             </div>
+
+            <mat-paginator
+                *ngIf="!isLoading && bills.length > 0"
+                [length]="bills.length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="handlePageEvent($event)"
+                aria-label="Select page"
+                class="custom-paginator">
+            </mat-paginator>
         </mat-card-content>
     </mat-card>
-
-
 </div>

@@ -309,3 +309,43 @@ html {
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
 }
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.pagination-controls button {
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.pagination-controls button:hover:not([disabled]) {
+    background-color: #e9ecef;
+}
+
+.pagination-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-numbers {
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.page-size-info {
+    margin-left: 20px;
+    font-size: 0.9em;
+    color: #6c757d;
+}
