@@ -1,0 +1,63 @@
+<div class="order-page">
+
+  <!-- Category filter buttons -->
+  <div class="category-filter">
+    <button
+      mat-raised-button
+      *ngFor="let category of categories"
+      [color]="selectedCategory === category ? 'primary' : ''"
+      (click)="filterByCategory(category)">
+      {{ category }}
+    </button>
+  </div>
+
+  <!-- Loading / Error -->
+  <div *ngIf="loading">Loading products...</div>
+  <div *ngIf="!loading && filteredProducts.length === 0">No products available.</div>
+
+  <!-- Product Grid -->
+  <div class="products-grid" *ngIf="!loading && filteredProducts.length > 0">
+    <mat-card class="product-card" *ngFor="let product of filteredProducts">
+
+      <img mat-card-image
+    src="https://media.istockphoto.com/id/1400194993/photo/cappuccino-art.jpg?s=612x612&w=0&k=20&c=_nYOcyQ15cYEeUYgUzkC5qG946nkCwU06NiWKt1s8SE="
+    alt="Cappuccino"
+    class="product-image"
+  />
+<!-- {{ product.name }}" -->
+
+      <mat-card-content class="product-card-content">
+        <h2 class="product-title">{{ product.name }}</h2>
+        <p class="product-description">{{ product.description }}</p>
+        <small class="category">{{ product.categoryName }}</small>
+      </mat-card-content>
+
+       <mat-card-actions class="product-footer">
+        <span class="price">${{ product.price }}</span>
+        <button mat-raised-button color="primary" (click)="addToCart(product)">
+          Add to Cart
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</div>
+
+<!-- Product button -->
+
+
+<!-- Modal Template -->
+<ng-template #cartModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Added to Cart</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>{{ selectedProduct?.name }} has been added to your cart.</p>
+    <p>Price: {{ selectedProduct?.price | currency }}</p>
+  </div>
+  <div class="modal-footer">
+    <button mat-button type="button" (click)="modal.close()">Close</button>
+  </div>
+</ng-template>
+

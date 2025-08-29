@@ -1,0 +1,147 @@
+/* Container Styling */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: 0.3s;
+}
+
+.container:hover {
+  transform: translateY(-2px);
+}
+
+/* Headings */
+h2 {
+  color: #2c3e50;
+  font-size: 22px;
+  margin-bottom: 15px;
+  border-left: 5px solid #3498db;
+  padding-left: 10px;
+}
+
+h3 {
+  margin-top: 20px;
+  color: #34495e;
+}
+
+/* Form Elements */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"] {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+  font-size: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+}
+
+/* Buttons */
+button {
+  background: #3498db;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Message Box */
+.message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  background: #ecf0f1;
+  color: #2c3e50;
+}
+
+.message:empty {
+  display: none;
+}
+
+/* Account Details */
+p {
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin: 6px 0;
+}
+
+p b {
+  color: #3498db;
+}
+
+/* 🔹 Mobile Responsive */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  form {
+    gap: 12px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input,
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}

@@ -31,20 +31,50 @@
         <i class="fas fa-users-cog"></i> Users
       </a>
     </li>
-    <li>
+    <li *ngIf="authService.isAdmin()">
       <a routerLink="/categories" (click)="isSidebarActive = false">
         <i class="fas fa-list"></i> Category
       </a>
     </li>
-    <li>
+    <li *ngIf="authService.isAdmin()">
       <a routerLink="/products" (click)="isSidebarActive = false">
         <i class="fas fa-box"></i> Product
       </a>
-    </li>
+      </li>
+
+
+      <li>
+  <a routerLink="/order" (click)="isSidebarActive = false">
+    <mat-icon>shopping_cart</mat-icon>
+    Order
+  </a>
+</li>
+
+    <li>
+  <a routerLink="/createAccount" (click)="isSidebarActive = false">
+    <mat-icon>shopping_cart</mat-icon>
+    CreateBankAccount
+  </a>
+</li>
+
     <li *ngIf="authService.isAdmin()">
       <a routerLink="/bills" (click)="isSidebarActive = false">
         <i class="fas fa-file-invoice" ></i> Bill
       </a>
     </li>
+<li *ngIf="authService.isAdmin()">
+  <a routerLink="/dashboard" (click)="isSidebarActive = false">
+    <i class="fas fa-tachometer-alt"></i> <!-- Dashboard icon -->
+    Dashboard
+  </a>
+</li>
+
+<li *ngIf="authService.isAdmin()">
+  <a routerLink="/admin/contact" (click)="isSidebarActive = false">
+    <i class="fas fa-envelope-open-text"></i> <!-- Manage Messages icon -->
+    Manage Messages
+  </a>
+</li>
+
   </ul>
 </nav>

@@ -1,4 +1,4 @@
-<div class="dashboard-container">
+<div class="dashboard-container" *ngIf="authService.isAdmin()">
     <h2>Dashboard Overview</h2>
 
     <div *ngIf="isLoading" class="loading-spinner">
@@ -12,7 +12,8 @@
                 <i class="fas fa-tags"></i>
             </div>
             <div class="card-content">
-                <h3> <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories</a>
+                <h3>
+                  <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories</a>
                 </h3>
                 <p class="count">{{ dashboardData.category || 0 }}</p>
             </div>
@@ -27,8 +28,9 @@
                 <p class="count">{{ dashboardData.Product || 0 }}</p>
             </div>
         </div>
-        </div>
-<div id="dashboard-cards2">
+      </div>
+
+      <div id="dashboard-cards2">
         <div class="dashboard-card bill-card">
             <div class="card-icon">
                 <i class="fas fa-receipt"></i>
@@ -44,13 +46,11 @@
                 <i class="fas fa-users"></i>
             </div>
             <div class="card-content">
-                <h3>
-                    Users
-                </h3>
+                <h3>Users</h3>
                 <p class="count">{{ dashboardData.user || 0 }}</p>
             </div>
         </div>
-        </div>
+      </div>
     </div>
 
 </div>

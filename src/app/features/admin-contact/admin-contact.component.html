@@ -1,0 +1,43 @@
+<div class="admin-contact-container">
+
+  <h1>Customer Messages</h1>
+
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <table class="messages-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Received At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let msg of messages">
+        <td>{{ msg.Name }}</td>
+        <td>{{ msg.Email }}</td>
+        <td>{{ msg.Subject }}</td>
+        <td>{{ msg.CreatedAt | date:'short' }}</td>
+        <td>
+          <button (click)="viewMessage(msg.Id)">View</button>
+          <button (click)="deleteMessage(msg.Id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedMessage" class="message-detail">
+    <h2>Message from {{ selectedMessage.Name }}</h2>
+    <p><strong>Email:</strong> {{ selectedMessage.Email }}</p>
+    <p><strong>Subject:</strong> {{ selectedMessage.Subject }}</p>
+    <p><strong>Message:</strong></p>
+    <p>{{ selectedMessage.Message }}</p>
+    <p><strong>Received At:</strong> {{ selectedMessage.CreatedAt | date:'full' }}</p>
+    <button (click)="closeMessage()">Close</button>
+  </div>
+
+</div>
+

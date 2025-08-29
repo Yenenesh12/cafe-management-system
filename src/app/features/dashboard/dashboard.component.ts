@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../../core/services/dashboard.service';
-import { ToastrService } from 'ngx-toastr';
-import { DashboardStats } from '../../shared/models/dashboard.model';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../core/services/auth.service';
+import { DashboardService } from '../../core/services/dashboard.service';
+import { DashboardStats } from '../../shared/models/dashboard.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +22,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private dashboardService: DashboardService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {

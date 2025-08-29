@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCellDef } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../../core/services/product.service';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ReactiveFormsModule, FormsModule, CommonModule,MatCellDef],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule,],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })

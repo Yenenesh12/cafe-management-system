@@ -23,6 +23,9 @@ export class ProductService {
   addNewProduct(product: Product): Observable<any> {
     return this.http.post(`${this.apiUrl}/addNewProduct`, product, { headers: this.getHeaders() });
   }
+    approveOrder(product: ApproveOrderDto): Observable<any> {
+    return this.http.post(`${this.apiUrl}/approveOrder`, product, { headers: this.getHeaders() });
+  }
 
   getAllProducts(): Observable<any> {
     return this.http.get(`${this.apiUrl}/getAllProduct`, { headers: this.getHeaders() });
@@ -48,3 +51,11 @@ export class ProductService {
     return this.http.post(`${this.apiUrl}/updateProductStatus`, product, { headers: this.getHeaders() });
   }
 }
+
+
+
+ interface ApproveOrderDto{
+  id:number;
+  customerId:string;
+  price:number;
+ }

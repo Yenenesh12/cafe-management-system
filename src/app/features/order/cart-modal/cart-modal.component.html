@@ -1,0 +1,14 @@
+
+    <div class="modal-header">
+      <h4 class="modal-title">Order Your Product</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to buy a {{ product?.name }}!!</p>
+      <p>Price: {{ product?.price | currency }}</p>
+      <p>The price will minus from your account</p>
+    </div>
+    <div class="modal-footer">
+      <button mat-button (click)="SubmitOrder()">Yes</button>
+      <button mat-button (click)="activeModal.close()">No</button>
+    </div>
