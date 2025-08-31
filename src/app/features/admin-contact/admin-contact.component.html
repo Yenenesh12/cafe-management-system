@@ -1,5 +1,4 @@
 <div class="admin-contact-container">
-
   <h1>Customer Messages</h1>
 
   <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
@@ -29,15 +28,16 @@
     </tbody>
   </table>
 
-  <div *ngIf="selectedMessage" class="message-detail">
-    <h2>Message from {{ selectedMessage.Name }}</h2>
-    <p><strong>Email:</strong> {{ selectedMessage.Email }}</p>
-    <p><strong>Subject:</strong> {{ selectedMessage.Subject }}</p>
-    <p><strong>Message:</strong></p>
-    <p>{{ selectedMessage.Message }}</p>
-    <p><strong>Received At:</strong> {{ selectedMessage.CreatedAt | date:'full' }}</p>
-    <button (click)="closeMessage()">Close</button>
+  <!-- Modal -->
+  <div class="modal-overlay" *ngIf="selectedMessage">
+    <div class="modal-content">
+      <h2>Message from {{ selectedMessage.Name }}</h2>
+      <p><strong>Email:</strong> {{ selectedMessage.Email }}</p>
+      <p><strong>Subject:</strong> {{ selectedMessage.Subject }}</p>
+      <p><strong>Message:</strong></p>
+      <p>{{ selectedMessage.Message }}</p>
+      <p><strong>Received At:</strong> {{ selectedMessage.CreatedAt | date:'full' }}</p>
+      <button (click)="closeMessage()">Close</button>
+    </div>
   </div>
-
 </div>
-

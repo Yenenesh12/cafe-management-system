@@ -1,0 +1,10 @@
+/* Extra styling overrides */
+mat-card {
+  border-radius: 1rem;
+}
+
+button {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+}

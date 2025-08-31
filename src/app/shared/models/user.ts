@@ -8,6 +8,14 @@ export interface User  {
   role?: string;
   token?: string;
 }
+export interface UserView {
+    email : string ;
+    userId : string ;
+    // id:string;
+    // userName:string ;
+    // currentDate: string;
+    // currentDateET: string;
+}
 
 export interface ChangePassword {
   OldPassword: string;

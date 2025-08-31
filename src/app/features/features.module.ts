@@ -13,7 +13,7 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ContactComponent } from './contact/contact.component';
-import { CreatBankAccountComponent } from './creat-bank-account/creat-bank-account.component';
+import { CreateBankAccountComponent } from './create-bank-account/create-bank-account.component';
 import { CreateBillComponent } from './create-bill/create-bill.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -35,7 +35,7 @@ import { SignupComponent } from './signup/signup.component';
 
     ContactComponent,
                  AdminContactComponent,
-                 CreatBankAccountComponent,
+
                  CartModalComponent,
 
   ],
@@ -61,7 +61,7 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     HomeComponent,
      OrderComponent,
-     CreatBankAccountComponent
+     CreateBankAccountComponent
 
   ]
 })

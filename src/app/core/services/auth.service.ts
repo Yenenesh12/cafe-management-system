@@ -46,6 +46,26 @@ export class AuthService {
         return response;
       }));
   }
+  //  Login(email: string, password: string): Observable<any> {
+  //   return this.http.post<any>(`${environment.apiUrl}/auth/login`, { email, password })
+  //     .pipe(map(response => {
+  //       if (response?.token) {
+  //         localStorage.setItem('token', response.token);
+  //         const decodedToken = this.jwtHelper.decodeToken(response.token);
+
+  //         const user: User = {
+  //           email: decodedToken.email,
+  //           role: decodedToken.role,
+  //           token: response.token,
+  //           // Add other required user properties here
+  //         };
+
+  //         localStorage.setItem('currentUser', JSON.stringify(user));
+  //         this.currentUserSubject.next(user);
+  //       }
+  //       return response;
+  //     }));
+  // }
 
   logout(): void {
     localStorage.removeItem('token');

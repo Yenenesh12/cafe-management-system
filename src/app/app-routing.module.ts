@@ -9,7 +9,7 @@ import { CategoryFormComponent } from './features/category-form/category-form.co
 import { CategoryListComponent } from './features/category-list/category-list.component';
 import { ChangePasswordComponent } from './features/change-password/change-password.component';
 import { ContactComponent } from './features/contact/contact.component';
-import { CreatBankAccountComponent } from './features/creat-bank-account/creat-bank-account.component';
+import { CreateBankAccountComponent } from './features/create-bank-account/create-bank-account.component';
 import { CreateBillComponent } from './features/create-bill/create-bill.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './features/forgot-password/forgot-password.component';
@@ -40,7 +40,7 @@ const routes: Routes = [
 { path: 'bills', component: BillListComponent, canActivate: [AuthGuard] },
 { path: 'bills/create', component: CreateBillComponent, canActivate: [AuthGuard] },
 { path: 'order', component: OrderComponent,  },
-{ path: 'createAccount', component: CreatBankAccountComponent,  },
+{ path: 'createAccount', component: CreateBankAccountComponent,  },
 { path: '', redirectTo: '/bills', pathMatch: 'full' },
 { path: '**', redirectTo: '' }, ]; @NgModule(
   { imports: [RouterModule.forRoot(routes)], exports: [RouterModule] }) export class AppRoutingModule { }
