@@ -1,15 +1,15 @@
-.main-content {
-  margin-top: 60px;     /* Height of the top navbar */
-  margin-left: 220px;   /* Width of the sidebar */
-  padding: 20px;
-  min-height: calc(100vh - 60px);
-  background-color: #f8f9fa; /* Light background for content */
-}
+/* .main-content {
+  /* margin-top: 60px;     /* Height of the top navbar */
+  /* margin-left: 220px;   Width of the sidebar */
+  /* padding: 20px;
+  min-height: calc(100vh - 60px);  */
+  /* background-color: #f8f9fa;
+}*/
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .main-content {
     margin-left: 0;
 
   }
-}
+} */

@@ -6,4 +6,8 @@ export interface Product {
   status: string;
   categoryId: number;
   categoryName?: string;
+  imageBase64?: string;
+  imageUrl?: string;
+
+
 }

@@ -26,26 +26,44 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/user/login`, { email, password })
-      .pipe(map(response => {
-        if (response?.token) {
-          localStorage.setItem('token', response.token);
-          const decodedToken = this.jwtHelper.decodeToken(response.token);
+login(email: string, password: string): Observable<any> {
+  const formData = new FormData();
+  formData.append('Email',email);      // must match LoginDto property names
+  formData.append('Password', password);
 
-          const user: User = {
-            email: decodedToken.email,
-            role: decodedToken.role,
-            token: response.token,
-            // Add other required user properties here
-          };
+  return this.http.post<any>(`${environment.apiUrl}/Login/Login`, formData);
+}
 
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-        }
-        return response;
-      }));
+
+
+
+  forgotPassword(email: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('Email', email);
+
+    return this.http.post(`${environment.apiUrl}/Login/Forgot`, formData);
   }
+
+  // login(email: string, password: string): Observable<any> {
+  //   return this.http.post<any>(`${environment.apiUrl}/Login/Login`, { email, password })
+  //     .pipe(map(response => {
+  //       if (response?.token) {
+  //         localStorage.setItem('token', response.token);
+  //         const decodedToken = this.jwtHelper.decodeToken(response.token);
+
+  //         const user: User = {
+  //           email: decodedToken.email,
+  //           role: decodedToken.role,
+  //           token: response.token,
+  //           // Add other required user properties here
+  //         };
+
+  //         localStorage.setItem('currentUser', JSON.stringify(user));
+  //         this.currentUserSubject.next(user);
+  //       }
+  //       return response;
+  //     }));
+  // }
   //  Login(email: string, password: string): Observable<any> {
   //   return this.http.post<any>(`${environment.apiUrl}/auth/login`, { email, password })
   //     .pipe(map(response => {
@@ -77,9 +95,18 @@ export class AuthService {
     return this.http.get(`${environment.apiUrl}/user/checkToken`);
   }
 
-  isAdmin(): boolean {
-    return this.currentUserValue?.role === 'admin';
-  }
+//  isAdmin(): boolean {
+//   const user = this.currentUserValue;
+//   return user?.roleName?.toLowerCase() === 'admin';
+// }
+setCurrentUser(user: User) {
+  this.currentUserSubject.next(user);
+}
+
+isAdmin(): boolean {
+  return this.currentUserValue?.roleName?.toLowerCase() === 'admin';
+}
+
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');

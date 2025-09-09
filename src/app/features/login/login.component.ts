@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../core/services/auth.service';
 import { TokenStorageService } from '../../core/services/token-storage.service';
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   returnUrl!: string;
   showPassword: boolean = false;
   password: string = '';
+  private jwtHelper = new JwtHelperService();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
   ) {
     if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
+
     }
   }
 
@@ -52,36 +55,50 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onSubmit() {
+onSubmit(): void {
     this.submitted = true;
-
-    if (this.loginForm.invalid) {
-      return;
-    }
+    if (this.loginForm.invalid) return;
 
     this.loading = true;
-    let form = this.loginForm.value;
-    this.authService.login(form.email, form.password).subscribe((res) => {
-      if (res) {
-        this.router.navigate([this.returnUrl]);
-        this.tokenStorageService.saveToken(res.data);
-        sessionStorage.setItem('currentUser', res.data);
-        sessionStorage.setItem('token', res.data);
-      } else {
-        this.toastr.error(res.message || 'Login failed');
+
+    const { email, password } = this.loginForm.value;
+
+    this.authService.login(email, password).subscribe({
+      next: (res) => {
         this.loading = false;
+
+        if (res?.token) {
+          // Save token and current user
+          localStorage.setItem('token', res.token);
+          const decodedToken: any = this.jwtHelper.decodeToken(res.token);
+          const user = {
+            email: decodedToken.Email,
+            roleName: decodedToken.roleName,
+            token: res.token
+          };
+          localStorage.setItem('currentUser', JSON.stringify(user));
+
+          this.toastr.success(res.message || 'Login successful');
+
+          // Route based on role
+          if (user.roleName === 'admin') {
+            this.router.navigate(['/admin']); // Admin dashboard route
+          } else {
+            this.router.navigate([this.returnUrl || '/']); // Normal user route
+          }
+
+        } else {
+          this.toastr.error(res?.message || 'Login failed');
+        }
+      },
+      error: (err) => {
+        this.loading = false;
+        this.toastr.error(err.error?.message || 'Login failed');
       }
     });
-    // this.authService.login(this.f['email'].value, this.f['password'].value)
-    //   .subscribe(
-    //     () => {
-    //       this.router.navigate([this.returnUrl]);
-    //     },
-    //     error => {
-    //       this.toastr.error(error.error.message || 'Login failed');
-    //       this.loading = false;
-    //     });
   }
+
+
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }

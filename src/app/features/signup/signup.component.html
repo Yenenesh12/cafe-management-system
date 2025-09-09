@@ -1,58 +1,120 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card mt-5">
-                <div class="card-header">
-                    <h3 class="text-center">Sign Up </h3>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label for="name">Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-
-                            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Full Name"  [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
-                            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
-                                <div *ngIf="f['name'].errors['required']">Name is required</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter valid email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
-                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-                                <div *ngIf="f['email'].errors['required']">Email is required</div>
-                                <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="contactNumber">Contact Number </label>
-                            <input type="text" class="form-control" id="contactNumber" formControlName="contactNumber"
-                            placeholder="Enter contact number" [ngClass]="{ 'is-invalid': submitted && f['contactNumber'].errors } " (keypress)="allowOnlyTenDigits($event)">
-                            <div *ngIf="submitted && f['contactNumber'].errors" class="invalid-feedback">
-                                <div *ngIf="f['contactNumber'].errors['required']">Contact number is required</div>
-                                <div *ngIf="f['contactNumber'].errors['pattern']">Only numbers are allowed</div>
-                                <div *ngIf="f['contactNumber'].errors['maxlength']">contact number is not greater 10 digits</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password"[ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
-                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                                <div *ngIf="f['password'].errors['required']">Password is required</div>
-                                <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button [disabled]="loading" class="btn btn-primary btn-block">
-                              <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
-                              Sign Up
-                          </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer text-center">
-                    Already have an account? <a routerLink="/login">Login</a>
-                </div>
-            </div>
-        </div>
+<div class="signup-container">
+  <div class="signup-card">
+    <div class="card-header">
+      <h3>Sign Up</h3>
     </div>
+    <div class="card-body">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+        <!-- Photo Upload -->
+        <div class="form-group">
+          <label for="photo">Profile Photo</label>
+          <input
+            type="file"
+            id="photo"
+            (change)="onFileChange($event)"
+            [ngClass]="{ 'is-invalid': submitted && f['photo'].errors }"
+          />
+          <div *ngIf="submitted && f['photo'].errors" class="error-msg">
+            <div *ngIf="f['photo'].errors['required']">Photo is required</div>
+            <div *ngIf="f['photo'].errors['invalidType']">Only image files allowed</div>
+          </div>
+          <div *ngIf="imagePreview" class="image-preview">
+            <img [src]="imagePreview" alt="Preview" />
+          </div>
+        </div>
+
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            formControlName="fullName"
+            placeholder="Enter your full name"
+            [ngClass]="{ 'is-invalid': submitted && f['fullName'].errors }"
+          />
+          <div *ngIf="submitted && f['fullName'].errors" class="error-msg">
+            <div *ngIf="f['fullName'].errors['required']">Full Name is required</div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Enter a valid email"
+            [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+          />
+          <div *ngIf="submitted && f['email'].errors" class="error-msg">
+            <div *ngIf="f['email'].errors['required']">Email is required</div>
+            <div *ngIf="f['email'].errors['email']">Enter a valid email</div>
+          </div>
+        </div>
+
+        <!-- Contact Number -->
+        <div class="form-group">
+          <label for="contactNumber">Contact Number</label>
+          <input
+            type="text"
+            id="contactNumber"
+            formControlName="contactNumber"
+            placeholder="+251XXXXXXXXX"
+            [ngClass]="{ 'is-invalid': submitted && f['contactNumber'].errors }"
+            (keypress)="allowOnlyDigitsWithPlus($event)"
+          />
+          <div *ngIf="submitted && f['contactNumber'].errors" class="error-msg">
+            <div *ngIf="f['contactNumber'].errors['required']">Contact number required</div>
+            <div *ngIf="f['contactNumber'].errors['pattern']">Must start with +251 and 9 digits</div>
+          </div>
+        </div>
+
+        <!-- user name -->
+          <div class="form-group">
+          <label for="username">User Name</label>
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            placeholder="Enter your full name"
+            [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+          />
+          <div *ngIf="submitted && f['username'].errors" class="error-msg">
+            <div *ngIf="f['username'].errors['required']">User Name is required</div>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter password"
+            [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+          />
+          <div *ngIf="submitted && f['password'].errors" class="error-msg">
+            <div *ngIf="f['password'].errors['required']">Password is required</div>
+            <div *ngIf="f['password'].errors['minlength']">Minimum 6 characters</div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button [disabled]="loading" class="btn-submit">
+            <span *ngIf="loading" class="spinner"></span>
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card-footer">
+      Already have an account? <a routerLink="/login">Login</a>
+    </div>
+  </div>
 </div>

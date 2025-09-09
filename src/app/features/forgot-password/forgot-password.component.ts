@@ -41,16 +41,16 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.forgotPassword(this.f['email'].value).subscribe(
-      () => {
-        this.toastr.success('Password sent to your email if account exists');
-        this.loading = false;
-      },
-      error => {
-        this.toastr.error('Failed to process forgot password request');
-        this.loading = false;
-      }
-    );
+    // this.userService.forgotPassword(this.f['email'].value).subscribe(
+    //   () => {
+    //     this.toastr.success('Password sent to your email if account exists');
+    //     this.loading = false;
+    //   },
+    //   error => {
+    //     this.toastr.error('Failed to process forgot password request');
+    //     this.loading = false;
+    //   }
+    // );
   }
 
   }

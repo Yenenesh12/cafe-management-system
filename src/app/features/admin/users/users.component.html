@@ -1,87 +1,44 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<!-- Template Update -->
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card mt-5">
-                <div class="card-header">
-                    <h3 class="text-center">Users List</h3>
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>NO</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Contact Number</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let user of paginatedUsers; let i = index" [ngClass]="{'inactive': user.status === 'false'}">
-                                <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
-                                <td>{{ user.name }}</td>
-                                <td>{{ user.email }}</td>
-                                <td>{{ user.contactNumber }}</td>
-                                <td>
-                                    <button class="btn-toggle me-2" (click)="toggleStatus(user)">
-                                        <i class="fas" [ngClass]="user.status === 'true' ? 'fa-toggle-on' : 'fa-toggle-off'"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-delete" (click)="deleteUser(user.id)">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+<div class="users-container">
+  <h2>Users Management</h2>
 
-                    <!-- Pagination Controls -->
-                    <div class="pagination-wrapper">
-                        <!-- <div class="pagination-info">
-                            Showing <span class="highlight">{{ (currentPage - 1) * itemsPerPage + 1 }}</span> to
-                            <span class="highlight">{{ getEndIndex() }}</span> of
-                            <span class="highlight">{{ users.length }}</span> entries
-                        </div> -->
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>Photo</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of paginatedUsers">
+        <td>
+          <img [src]="getPhotoUrl(user.PhotoPath)" alt="Photo" class="user-photo" />
+        </td>
+        <td>{{ user.FullName }}</td>
+        <td>{{ user.Email }}</td>
+        <td>{{ user.ContactNumber }}</td>
+        <td>{{ user.RoleName }}</td>
+        <td>
+          <span *ngIf="user.IsActive; else notActive" class="active">Active</span>
+          <ng-template #notActive>
+            <span class="inactive">Pending</span>
+          </ng-template>
+        </td>
+        <td>
+          <button (click)="approve(user)" [disabled]="user.IsActive">Approve</button>
+          <button (click)="deleteUser(user.Id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-                        <div class="flex-pagination">
-                            <button class="pagination-btn"
-                                    [disabled]="currentPage === 1"
-                                    (click)="goToPage(1)">
-                                &laquo;
-                            </button>
-
-                            <button class="pagination-btn"
-                                    [disabled]="currentPage === 1"
-                                    (click)="goToPage(currentPage - 1)">
-                                &lsaquo;
-                            </button>
-
-                            <div class="page-numbers">
-                                <button *ngFor="let page of getPages()"
-                                        class="page-btn"
-                                        [class.active]="page === currentPage"
-                                        (click)="goToPage(page)">
-                                    {{ page }}
-                                </button>
-                            </div>
-
-                            <button class="pagination-btn"
-                                    [disabled]="currentPage === totalPages"
-                                    (click)="goToPage(currentPage + 1)">
-                                &rsaquo;
-                            </button>
-
-                            <button class="pagination-btn"
-                                    [disabled]="currentPage === totalPages"
-                                    (click)="goToPage(totalPages)">
-                                &raquo;
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="pagination">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+  </div>
 </div>
